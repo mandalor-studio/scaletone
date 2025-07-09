@@ -63,3 +63,9 @@ The project is inspired by the Radix UI Themes Playground and aims to provide a 
 - https://zippystarter.com/tools/shadcn-ui-theme-generator
 - https://github.com/jnsahaj/tweakcn
 - https://tweakcn.com/editor/theme
+
+## Radix colors principles
+
+- https://www.radix-ui.com/colors/docs/palette-composition/scales
+- https://www.radix-ui.com/colors/docs/palette-composition/composing-a-palette
+- https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale
