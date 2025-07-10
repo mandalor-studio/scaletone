@@ -9,45 +9,57 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeSelector } from "@/components/theme-selector";
+import { CSSDisplay } from "@/components/css-display";
 import { ChartPieSeparatorNone } from "@/components/demos/pie-chart";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-4 max-w-lg mx-auto">
+    <main className="flex flex-col gap-4 max-w-4xl mx-auto p-4">
       <div className="flex gap-2">
         <ModeToggle />
         <ThemeSelector />
       </div>
-      <Card className="min-w-xs">
-        <CardHeader>
-          <CardTitle>Buttons</CardTitle>
-          <CardDescription>
-            Buttons are used to trigger actions in your app.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-2">
-          <Button>Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
-          <Button variant="destructive">Destructive</Button>
-        </CardContent>
-      </Card>
-      <Card className="min-w-xs">
-        <CardHeader>
-          <CardTitle>Badges</CardTitle>
-          <CardDescription>
-            Badges are used to show status of an item.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-2">
-          <Badge>Default</Badge>
-          <Badge variant="secondary">Secondary</Badge>
-          <Badge variant="outline">Outline</Badge>
-        </CardContent>
-      </Card>
-      <ChartPieSeparatorNone />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="space-y-4">
+          <Card className="min-w-xs">
+            <CardHeader>
+              <CardTitle>Buttons</CardTitle>
+              <CardDescription>
+                Buttons are used to trigger actions in your app.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <Button>Default</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="link">Link</Button>
+              <Button variant="destructive">Destructive</Button>
+            </CardContent>
+          </Card>
+
+          <Card className="min-w-xs">
+            <CardHeader>
+              <CardTitle>Badges</CardTitle>
+              <CardDescription>
+                Badges are used to show status of an item.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <Badge>Default</Badge>
+              <Badge variant="secondary">Secondary</Badge>
+              <Badge variant="outline">Outline</Badge>
+            </CardContent>
+          </Card>
+
+          <ChartPieSeparatorNone />
+        </div>
+
+        <div className="space-y-4">
+          <CSSDisplay />
+        </div>
+      </div>
     </main>
   );
 }

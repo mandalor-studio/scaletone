@@ -28,7 +28,8 @@ export type ShadcnColorVar =
   | "chart-2"
   | "chart-3"
   | "chart-4"
-  | "chart-5";
+  | "chart-5"
+  | "destructive";
 
 export type Mode = "light" | "dark";
 
@@ -120,6 +121,7 @@ export const lightMap: MappingEntry[] = [
   { token: "chart-3", scale: 3, variant: "solid", comment: "radix 3" },
   { token: "chart-4", scale: 5, variant: "solid", comment: "radix 5" },
   { token: "chart-5", scale: 12, variant: "solid", comment: "radix 12" },
+  { token: "destructive", scale: 9, variant: "solid", comment: "radix 9" },
 ];
 
 export const darkMap: MappingEntry[] = [
@@ -198,4 +200,5 @@ export const darkMap: MappingEntry[] = [
   { token: "chart-3", scale: 3, variant: "solid", comment: "radix 3" },
   { token: "chart-4", scale: 5, variant: "solid", comment: "radix 5" },
   { token: "chart-5", scale: 12, variant: "solid", comment: "radix 12" },
+  { token: "destructive", scale: 9, variant: "solid", comment: "radix 9" },
 ];
