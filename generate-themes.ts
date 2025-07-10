@@ -28,13 +28,38 @@ const getDestructiveColor = (
         paletteName as keyof typeof destructivePairings
       ] as keyof typeof allRadixPalettes);
 };
-// Récupère la valeur hex d’un token radix
-const getHex = (
+
+const toVars = (
+  map: MappingEntry[],
   palette: Record<string, string>,
-  scale: number,
-  variant: Variant
-): string => {
-  return palette[`${scale}${variant === "alpha" ? "A" : ""}`];
+  paletteA: Record<string, string>,
+  mode: Mode,
+  paletteName: string
+): string[] => {
+  const base = map.map(({ token, scale, variant, comment }) => {
+    const pal = variant === "alpha" ? paletteA : palette;
+    const key = `${paletteName}${variant === "alpha" ? "A" : ""}${scale}`;
+    const value = pal[key];
+    return `  --${token}: ${value}; /* ${comment} */`;
+  });
+
+  const destructiveName = getDestructiveColor(
+    paletteName as keyof typeof allRadixPalettes
+  ) as keyof typeof allRadixPalettes;
+  const destructiveLight = (
+    allRadixPalettes[destructiveName].light as Record<string, string>
+  )[`${destructiveName}9`];
+  const destructiveDark = (
+    allRadixPalettes[destructiveName].dark as Record<string, string>
+  )[`${destructiveName}9`];
+
+  base.push(
+    `  --destructive: ${
+      mode === "light" ? destructiveLight : destructiveDark
+    }; /* radix ${destructiveName} 9 */`
+  );
+
+  return base;
 };
 
 const generateCSS = (
@@ -44,37 +69,20 @@ const generateCSS = (
   lightMap: MappingEntry[],
   darkMap: MappingEntry[]
 ) => {
-  const destructiveName = getDestructiveColor(
+  const lightVars = toVars(
+    lightMap,
+    lightPalette,
+    allRadixPalettes[name].lightA,
+    "light",
     name
-  ) as keyof typeof allRadixPalettes;
-  const destructiveLight = (
-    allRadixPalettes[destructiveName].light as Record<string, string>
-  )[`${destructiveName}9`];
-  const destructiveDark = (
-    allRadixPalettes[destructiveName].dark as Record<string, string>
-  )[`${destructiveName}9`];
-
-  const toVars = (
-    map: MappingEntry[],
-    palette: Record<string, string>,
-    mode: Mode
-  ): string[] => {
-    const base = map.map(({ token, scale, variant, comment }) => {
-      const value = getHex(palette, scale, variant);
-      return `  --${token}: ${value}; /* ${comment} */`;
-    });
-
-    base.push(
-      `  --destructive: ${
-        mode === "light" ? destructiveLight : destructiveDark
-      }; /* radix ${destructiveName} 9 */`
-    );
-
-    return base;
-  };
-
-  const lightVars = toVars(lightMap, lightPalette, "light").join("\n");
-  const darkVars = toVars(darkMap, darkPalette, "dark").join("\n");
+  ).join("\n");
+  const darkVars = toVars(
+    darkMap,
+    darkPalette,
+    allRadixPalettes[name].darkA,
+    "dark",
+    name
+  ).join("\n");
 
   return `/* Generated theme: ${name} */\n\n:root {\n${lightVars}\n}\n\n.dark {\n${darkVars}\n}`;
 };

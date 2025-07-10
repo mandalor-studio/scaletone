@@ -1,0 +1,69 @@
+/* Generated theme: red */
+
+:root {
+  --background: #fffcfc; /* radix 1 */
+  --card: #fffcfc; /* radix 1 */
+  --popover: #fffcfc; /* radix 1 */
+  --sidebar-accent: #fff7f7; /* radix 2 */
+  --muted: #fff7f7; /* radix 2 */
+  --secondary: #feebec; /* radix 3 */
+  --sidebar: #feebec; /* radix 3 */
+  --primary-foreground: #feebec; /* radix 3 */
+  --sidebar-primary-foreground: #feebec; /* radix 3 */
+  --accent: #feebec; /* radix 3 */
+  --border: #f4a9aa; /* radix 7 */
+  --input: #f4a9aa; /* radix 7 */
+  --sidebar-border: #f4a9aa; /* radix 7 */
+  --sidebar-ring: #eb8e90; /* radix 8 */
+  --ring: #eb8e90; /* radix 8 */
+  --muted-foreground: #ce2c31; /* radix 11 */
+  --secondary-foreground: #55000de8; /* radix 12 A */
+  --accent-foreground: #55000de8; /* radix 12 A */
+  --primary: #55000de8; /* radix 12 A */
+  --sidebar-primary: #55000de8; /* radix 12 A */
+  --sidebar-accent-foreground: #55000de8; /* radix 12 A */
+  --foreground: #641723; /* radix 12 */
+  --card-foreground: #641723; /* radix 12 */
+  --popover-foreground: #641723; /* radix 12 */
+  --sidebar-foreground: #641723; /* radix 12 */
+  --chart-1: #e5484d; /* radix 9 */
+  --chart-2: #f4a9aa; /* radix 7 */
+  --chart-3: #feebec; /* radix 3 */
+  --chart-4: #ffcdce; /* radix 5 */
+  --chart-5: #641723; /* radix 12 */
+  --destructive: #e5484d; /* radix red 9 */
+}
+
+.dark {
+  --background: #191111; /* radix 1 */
+  --card: #201314; /* radix 2 */
+  --popover: #201314; /* radix 2 */
+  --primary-foreground: #201314; /* radix 2 */
+  --sidebar: #201314; /* radix 2 */
+  --sidebar-accent: #500f1c; /* radix 4 */
+  --secondary: #500f1c; /* radix 4 */
+  --muted: #500f1c; /* radix 4 */
+  --accent: #500f1c; /* radix 4 */
+  --border: #8c333a; /* radix 7 */
+  --sidebar-border: #8c333a; /* radix 7 */
+  --input: #ff536184; /* radix 7 A */
+  --ring: #e5484d; /* radix 9 */
+  --sidebar-ring: #e5484d; /* radix 9 */
+  --sidebar-primary: #e5484d; /* radix 9 */
+  --muted-foreground: #ff9592; /* radix 11 */
+  --primary: #ffd1d9; /* radix 12 A */
+  --foreground: #ffd1d9; /* radix 12 */
+  --card-foreground: #ffd1d9; /* radix 12 */
+  --popover-foreground: #ffd1d9; /* radix 12 */
+  --secondary-foreground: #ffd1d9; /* radix 12 */
+  --accent-foreground: #ffd1d9; /* radix 12 */
+  --sidebar-primary-foreground: #ffd1d9; /* radix 12 */
+  --sidebar-accent-foreground: #ffd1d9; /* radix 12 */
+  --sidebar-foreground: #ffd1d9; /* radix 12 */
+  --chart-1: #e5484d; /* radix 9 */
+  --chart-2: #8c333a; /* radix 7 */
+  --chart-3: #3b1219; /* radix 3 */
+  --chart-4: #611623; /* radix 5 */
+  --chart-5: #ffd1d9; /* radix 12 */
+  --destructive: #e5484d; /* radix red 9 */
+}
