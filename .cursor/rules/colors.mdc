@@ -1,0 +1,153 @@
+---
+
+## alwaysApply: true
+
+# 🎨 Radix Theme Generator – Logic & Structure
+
+We generate all Radix-based palettes using a script and a few mapping/config files:
+
+* `themes.ts`: defines all Radix palettes (gray, brand, alpha variants)
+* `color-mapping.ts`: defines which scale of which token maps to a CSS variable
+* `generate-themes.ts`: builds the actual `.css` files for each theme inside `/public/themes`
+
+---
+
+## 🧱 How Radix Palettes Work
+
+Each Radix palette (e.g. `blue`, `sage`, `red`) is composed of:
+
+- **12 solid colors for light theme**: from scale `1` (lightest) to `12` (darkest)
+- **12 alpha colors for light theme**: same structure, but with transparency over a white or dark background (suffix `A1` to `A12`)
+- - **12 solid colors for dark theme**: from scale `1` (darkest) to `12` (lightest)
+- **12 alpha colors for dark theme**: same structure, but with transparency over a white or dark background (suffix `A1` to `A12`)
+
+These are accessible via objects like:
+
+```ts
+allRadixPalettes["blue"].light["blue9"]; // solid color
+allRadixPalettes["blue"].dark["blue9"]; // solid color
+allRadixPalettes["blue"].lightA["blueA9"]; // alpha variant
+allRadixPalettes["blue"].darkA["blueA9"]; // alpha variant
+```
+
+Each palette has:
+
+- `light`, `dark`: solid variants
+- `lightA`, `darkA`: alpha variants
+
+---
+
+## 🔧 Theme Logic
+
+We support **3 types of themes**:
+
+1. **Neutral only** (pure grayscale, no accent)
+2. **Neutral + Brand** (grayscale base with accent color)
+3. **Monotone** (a single brand palette used as both base and accent)
+
+By default, we generate all **neutral** and **monotone** themes.
+
+The only complexity arises when mixing **neutral + brand** — that logic must be handled dynamically in the UI.
+
+---
+
+## 🌈 Natural Pairings – Neutral + Brand
+
+Some neutral palettes pair well with certain brand palettes.
+
+| Neutral | Compatible Brand Palettes                              |
+| ------- | ------------------------------------------------------ |
+| `gray`  | All (universal base)                                   |
+| `mauve` | tomato, red, ruby, crimson, pink, plum, purple, violet |
+| `slate` | iris, indigo, blue, cyan, sky                          |
+| `sage`  | mint, teal, jade, green                                |
+| `olive` | grass, lime                                            |
+| `sand`  | yellow, amber, orange, brown                           |
+
+> If the selected brand color isn’t compatible, we fallback to a default safe pairing.
+
+Defined in `themes.ts`:
+
+```ts
+export const naturalPairings = {
+  gray: [...allBrands],
+  mauve: [
+    "tomato",
+    "red",
+    "ruby",
+    "crimson",
+    "pink",
+    "plum",
+    "purple",
+    "violet",
+  ],
+  slate: ["iris", "indigo", "blue", "cyan", "sky"],
+  sage: ["mint", "teal", "jade", "green"],
+  olive: ["grass", "lime"],
+  sand: ["amber", "yellow", "orange", "brown"],
+} satisfies Record<RadixGrayScale, AllRadixBrandScales[]>;
+```
+
+---
+
+## ✪ What Gets Overridden When Adding a Brand Palette?
+
+When a user selects a brand accent on top of a neutral theme, we override:
+
+- `--primary`
+- `--primary-foreground`
+- `--chart-1` to `--chart-5`
+- `--destructive`
+
+### 🔄 Primary scale variants
+
+We allow two options for the primary scale:
+
+- **Scale 9** (vibrant)
+- **Scale 12** (high contrast)
+
+### 🌑 Primary foreground logic
+
+Most brand colors at scale 9 use a **light foreground**:
+
+- On **light theme** → use `brand1`
+- On **dark theme** → use `brand12`
+
+However, for specific light palettes, we reverse this logic:
+
+> Palettes that require a **dark foreground** at scale 9: `lime`, `yellow`, `amber`, `mint`, `sky`
+
+---
+
+## 💥 Destructive Pairing Logic
+
+Each brand palette is associated with a `destructive` palette used for critical actions.
+
+```ts
+export const destructivePairings = {
+  blue: "ruby",
+  teal: "ruby",
+  green: "red",
+  mint: "ruby",
+  lime: "tomato",
+  yellow: "tomato",
+  amber: "tomato",
+  red: "red",
+  crimson: "ruby",
+  // ... full list in code
+} satisfies Record<AllRadixBrandScales, DestructiveColor>;
+```
+
+For neutral-only themes, the default destructive color is always `red`.
+
+---
+
+## ↺ Reverting to a Neutral Theme
+
+If the user removes the brand palette, we revert to the **default neutral theme**:
+
+- All overrides (`primary`, `chart`, `destructive`) are reset to their base values.
+
+---
+
+> Let us know if we should document the theme file structure or CSS variable mapping further.
