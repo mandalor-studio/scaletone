@@ -81,8 +81,15 @@ export function RadixThemeProvider({
 
 export function useRadixTheme() {
   const context = useContext(RadixThemeContext);
-  if (context === undefined) {
-    throw new Error("useRadixTheme must be used within a RadixThemeProvider");
+  if (!context) {
+    if (process.env.NODE_ENV === "development") {
+      console.warn("useRadixTheme used outside of RadixThemeProvider");
+    }
+    return {
+      theme: "sage",
+      setTheme: () => {},
+      availableThemes: [],
+    };
   }
   return context;
 }
