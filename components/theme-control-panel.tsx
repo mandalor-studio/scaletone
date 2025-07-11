@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRadixTheme } from "./radix-theme-provider";
 import { useTheme } from "next-themes";
@@ -27,6 +27,26 @@ export function ThemeControlPanel() {
     setBrand,
     setPrimaryIntensity,
   } = useRadixTheme();
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key.toLowerCase() === "t") {
+        // Prevent toggle if the user is typing in an input
+        if (
+          event.target instanceof HTMLInputElement ||
+          event.target instanceof HTMLTextAreaElement
+        ) {
+          return;
+        }
+        setIsOpen((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const isDark = resolvedTheme === "dark";
   const mode = isDark ? "dark" : "light";
@@ -78,7 +98,12 @@ export function ThemeControlPanel() {
         >
           <CardHeader className="flex-shrink-0">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-lg">Theme Control</CardTitle>
+              <div className="flex items-center gap-2">
+                <CardTitle className="text-lg">Theme Control</CardTitle>
+                <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+                  T
+                </kbd>
+              </div>
               <Button
                 variant="ghost"
                 size="icon"
