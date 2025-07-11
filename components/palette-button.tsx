@@ -1,0 +1,71 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { allRadixPalettes } from "@/lib/colors/themes";
+import { cn } from "@/lib/utils";
+
+function PaletteSwatch({
+  paletteName,
+  mode,
+}: {
+  paletteName: string;
+  mode: "light" | "dark";
+}) {
+  const palette =
+    allRadixPalettes[paletteName as keyof typeof allRadixPalettes];
+  if (!palette) return null;
+  const colors = Object.values(palette[mode]);
+  return (
+    <div className="flex flex-col items-center">
+      {colors.map((color, i) => (
+        <div key={i} className="w-3 h-1" style={{ background: color }} />
+      ))}
+    </div>
+  );
+}
+
+export function PaletteButton({
+  paletteName,
+  mode,
+  isSelected,
+  onClick,
+  tooltipLabel,
+}: {
+  paletteName: string;
+  mode: "light" | "dark";
+  isSelected: boolean;
+  onClick: () => void;
+  tooltipLabel?: string;
+}) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          onClick={onClick}
+          className={cn(
+            "transition-all rounded-sm gap-2 duration-200 flex items-center justify-center",
+            isSelected && "flex-col"
+          )}
+        >
+          {isSelected && (
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="text-foreground text-xs font-bold drop-shadow-md"
+            >
+              ✓
+            </motion.span>
+          )}
+          <PaletteSwatch paletteName={paletteName} mode={mode} />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent
+        className="bg-accent text-foreground"
+        arrowClassName="bg-accent fill-accent"
+      >
+        <p className="capitalize">{tooltipLabel || paletteName}</p>
+      </TooltipContent>
+    </Tooltip>
+  );
+}

@@ -5,6 +5,7 @@ import { ThemeModeProvider } from "../components/theme-mode-provider";
 import { RadixThemeProvider } from "../components/radix-theme-provider";
 import Header from "../components/layout/header";
 import Footer from "../components/layout/footer";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +53,7 @@ export default function RootLayout({
               </main>
               <Footer />
             </div>
+            <Toaster />
           </RadixThemeProvider>
         </ThemeModeProvider>
       </body>
