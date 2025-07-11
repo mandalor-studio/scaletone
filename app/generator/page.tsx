@@ -13,13 +13,13 @@ import { ChartPieSeparatorNone } from "@/components/demos/pie-chart";
 
 export default function GeneratorPage() {
   return (
-    <div className="flex flex-col gap-4 max-w-4xl p-4">
+    <div className="space-y-8">
       <div className="flex gap-2">
         <ThemeSelector />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="space-y-6">
           <Card className="min-w-xs">
             <CardHeader>
               <CardTitle>Buttons</CardTitle>
@@ -54,7 +54,7 @@ export default function GeneratorPage() {
           <ChartPieSeparatorNone />
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           <CSSDisplay />
         </div>
       </div>
