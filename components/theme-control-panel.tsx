@@ -69,7 +69,7 @@ export function ThemeControlPanel() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="fixed top-1/2 -translate-y-1/2 right-4 z-40 w-90"
       >
-        <Card className="shadow-xl flex flex-col bg-background/20 backdrop-blur-sm">
+        <Card className="shadow-xl flex flex-col bg-background/95 backdrop-blur-sm">
           <CardHeader className="flex-shrink-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg">Theme Control</CardTitle>
