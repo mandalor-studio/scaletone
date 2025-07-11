@@ -11,7 +11,7 @@ import { ThemeSelector } from "@/components/theme-selector";
 import { CSSDisplay } from "@/components/css-display";
 import { ChartPieSeparatorNone } from "@/components/demos/pie-chart";
 
-export default function Home() {
+export default function GeneratorPage() {
   return (
     <div className="flex flex-col gap-4 max-w-4xl p-4">
       <div className="flex gap-2">

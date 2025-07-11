@@ -31,8 +31,10 @@ export default function Header() {
             <AvatarFallback>EJ</AvatarFallback>
           </Avatar>
         </Link>
-        <Button variant="default">
-          Try it out <ArrowRightIcon />
+        <Button variant="default" asChild>
+          <Link href="/generator">
+            Try it out <ArrowRightIcon />
+          </Link>
         </Button>
       </div>
     </header>

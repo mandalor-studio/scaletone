@@ -42,7 +42,9 @@ export default function RootLayout({
         >
           <RadixThemeProvider>
             <Header />
-            <main className="flex flex-col gap-4 mx-auto p-4">{children}</main>
+            <main className="flex flex-1 flex-col gap-4 mx-auto p-4">
+              {children}
+            </main>
           </RadixThemeProvider>
         </ThemeModeProvider>
       </body>
