@@ -63,11 +63,7 @@ export function getPrimaryForegroundColor(
   }
 
   // Vibrant (scale 9): depends on the brand color
-  if (isLightForeground) {
-    return "#fff";
-  } else {
-    return "#1D211C";
-  }
+  return isLightForeground ? "#fff" : "#1D211C";
 }
 
 export function getPrimaryColor(
