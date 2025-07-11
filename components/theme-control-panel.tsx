@@ -13,6 +13,8 @@ import { radixGrayScales } from "@/lib/colors/themes";
 import { CurrentThemeDisplay } from "./current-theme-display";
 import { PaletteButton } from "./palette-button";
 
+const MotionCard = motion(Card);
+
 export function ThemeControlPanel() {
   const [isOpen, setIsOpen] = useState(true);
   const { theme: resolvedTheme } = useTheme();
@@ -69,7 +71,11 @@ export function ThemeControlPanel() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="fixed top-1/2 -translate-y-1/2 right-4 z-40 w-90"
       >
-        <Card className="shadow-xl flex flex-col bg-background/95 backdrop-blur-sm">
+        <MotionCard
+          layout
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="shadow-xl flex flex-col bg-background/95 backdrop-blur-sm"
+        >
           <CardHeader className="flex-shrink-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg">Theme Control</CardTitle>
@@ -86,7 +92,7 @@ export function ThemeControlPanel() {
           <Separator />
           <CardContent className="flex-1 overflow-hidden">
             <TooltipProvider>
-              <div className="space-y-6 will-change-transform">
+              <motion.div layout className="space-y-6 will-change-transform">
                 <CurrentThemeDisplay mode={mode} />
                 <Separator />
                 {/* Base Palette Selection */}
@@ -127,23 +133,16 @@ export function ThemeControlPanel() {
                 </div>
 
                 {/* Brand Accent Selection (only for neutral bases) */}
-                <AnimatePresence>
+                <AnimatePresence initial={false}>
                   {isNeutralBase && (
                     <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.15, ease: "easeOut" }}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      style={{ overflow: "hidden" }}
                     >
-                      <motion.div
-                        initial={{ scaleY: 0, opacity: 0 }}
-                        animate={{ scaleY: 1, opacity: 1 }}
-                        exit={{ scaleY: 0, opacity: 0 }}
-                        transition={{ duration: 0.15 }}
-                        style={{ originY: 0 }}
-                      >
-                        <Separator />
-                      </motion.div>
+                      <Separator className="mt-6" />
                       <div className="space-y-3 pt-6">
                         <div className="flex items-center justify-between">
                           <h3 className="font-medium text-sm">Brand Accent</h3>
@@ -185,23 +184,16 @@ export function ThemeControlPanel() {
                 </AnimatePresence>
 
                 {/* Primary Intensity (only when brand is selected) */}
-                <AnimatePresence>
+                <AnimatePresence initial={false}>
                   {config.brand && (
                     <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.15, ease: "easeOut" }}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      style={{ overflow: "hidden" }}
                     >
-                      <motion.div
-                        initial={{ scaleY: 0, opacity: 0 }}
-                        animate={{ scaleY: 1, opacity: 1 }}
-                        exit={{ scaleY: 0, opacity: 0 }}
-                        transition={{ duration: 0.15 }}
-                        style={{ originY: 0 }}
-                      >
-                        <Separator />
-                      </motion.div>
+                      <Separator className="mt-6" />
                       <div className="space-y-3 pt-6">
                         <h3 className="font-medium text-sm">
                           Primary Intensity
@@ -236,10 +228,10 @@ export function ThemeControlPanel() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             </TooltipProvider>
           </CardContent>
-        </Card>
+        </MotionCard>
       </motion.div>
     </>
   );
