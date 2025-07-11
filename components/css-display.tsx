@@ -12,7 +12,6 @@ import {
 } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Copy, Check, Code } from "lucide-react";
-import { getThemeType } from "@/lib/colors/theme-generator";
 
 export function CSSDisplay() {
   const { config, generatedCSS } = useRadixTheme();
@@ -27,9 +26,6 @@ export function CSSDisplay() {
       console.error("Failed to copy CSS:", error);
     }
   };
-
-  const themeType = getThemeType(config as any);
-  const isCustomCSS = themeType === "neutral-with-brand";
 
   return (
     <Card className="w-full">
@@ -47,8 +43,8 @@ export function CSSDisplay() {
           <div className="flex items-center gap-2">
             <Badge variant="secondary">
               {config.base}
-              {(config as any).brand && ` + ${(config as any).brand}`}
-              {(config as any).brand && ` (${config.primaryIntensity})`}
+              {config.brand && ` + ${config.brand}`}
+              {config.brand && ` (${config.primaryIntensity})`}
             </Badge>
             <Button
               variant="outline"
@@ -67,23 +63,11 @@ export function CSSDisplay() {
         </div>
       </CardHeader>
       <CardContent>
-        {isCustomCSS ? (
-          <div className="relative">
-            <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
-              <code>{generatedCSS}</code>
-            </pre>
-          </div>
-        ) : (
-          <div className="text-center py-8 text-muted-foreground">
-            <p className="text-sm">This theme uses a static CSS file:</p>
-            <code className="text-sm font-mono bg-muted px-2 py-1 rounded mt-2 inline-block">
-              /themes/{config.base}.css
-            </code>
-            <p className="text-xs mt-2">
-              No additional CSS needed for this theme configuration.
-            </p>
-          </div>
-        )}
+        <div className="relative">
+          <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+            <code>{generatedCSS}</code>
+          </pre>
+        </div>
       </CardContent>
     </Card>
   );

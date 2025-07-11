@@ -105,26 +105,103 @@ export function generateChartColors(
   };
 }
 
-export function generateThemeCSS(config: ThemeConfig): string {
+function generateStaticThemeCSS(
+  basePalette: string,
+  includeComments: boolean = true
+): string {
+  const palette =
+    allRadixPalettes[basePalette as keyof typeof allRadixPalettes];
+  const destructiveColor = getDestructiveColor({
+    base: basePalette,
+    primaryIntensity: "vibrant",
+  } as ThemeConfig);
+  const destructivePalette = allRadixPalettes[destructiveColor];
+
+  let css = includeComments ? `/* Generated theme: ${basePalette} */\n\n` : "";
+
+  // Light mode
+  css += ":root {\n";
+  lightMap.forEach((entry: MappingEntry) => {
+    let value: string;
+    let comment: string;
+
+    if (entry.token === "destructive") {
+      value = (destructivePalette.light as RadixScale)[`${destructiveColor}9`]!;
+      comment = `${destructiveColor} 9`;
+    } else {
+      // Use base palette
+      const colors = (
+        entry.variant === "alpha" ? palette.lightA : palette.light
+      ) as RadixScale;
+      const colorKey =
+        entry.variant === "alpha"
+          ? `${basePalette}A${entry.scale}`
+          : `${basePalette}${entry.scale}`;
+      value = colors[colorKey]!;
+      comment = `${basePalette} ${entry.scale}${
+        entry.variant === "alpha" ? " A" : ""
+      }`;
+    }
+
+    css += includeComments
+      ? `  --${entry.token}: ${value}; /* ${comment} */\n`
+      : `  --${entry.token}: ${value};\n`;
+  });
+  css += "}\n\n";
+
+  // Dark mode
+  css += ".dark {\n";
+  darkMap.forEach((entry: MappingEntry) => {
+    let value: string;
+    let comment: string;
+
+    if (entry.token === "destructive") {
+      value = (destructivePalette.dark as RadixScale)[`${destructiveColor}9`]!;
+      comment = `${destructiveColor} 9`;
+    } else {
+      // Use base palette
+      const colors = (
+        entry.variant === "alpha" ? palette.darkA : palette.dark
+      ) as RadixScale;
+      const colorKey =
+        entry.variant === "alpha"
+          ? `${basePalette}A${entry.scale}`
+          : `${basePalette}${entry.scale}`;
+      value = colors[colorKey]!;
+      comment = `${basePalette} ${entry.scale}${
+        entry.variant === "alpha" ? " A" : ""
+      }`;
+    }
+
+    css += includeComments
+      ? `  --${entry.token}: ${value}; /* ${comment} */\n`
+      : `  --${entry.token}: ${value};\n`;
+  });
+  css += "}\n";
+
+  return css;
+}
+
+export function generateThemeCSS(
+  config: ThemeConfig,
+  includeComments: boolean = true
+): string {
   const themeType = getThemeType(config);
   const basePalette = config.base;
   const destructiveColor = getDestructiveColor(config);
 
-  // For monotone themes, use existing CSS files
-  if (themeType === "monotone") {
-    return `/* Use existing CSS file: /themes/${basePalette}.css */`;
-  }
-
-  // For neutral themes without brand, use existing CSS files
-  if (themeType === "neutral") {
-    return `/* Use existing CSS file: /themes/${basePalette}.css */`;
+  // For monotone and neutral themes, generate CSS from palettes
+  if (themeType === "monotone" || themeType === "neutral") {
+    return generateStaticThemeCSS(basePalette, includeComments);
   }
 
   // For neutral + brand themes, generate custom CSS
   const neutralPalette = allRadixPalettes[basePalette as RadixGrayScale];
   const destructivePalette = allRadixPalettes[destructiveColor];
 
-  let css = `/* Generated theme: ${basePalette} + ${config.brand} (${config.primaryIntensity}) */\n\n`;
+  let css = includeComments
+    ? `/* Generated theme: ${basePalette} + ${config.brand} (${config.primaryIntensity}) */\n\n`
+    : "";
 
   // Light mode
   css += ":root {\n";
@@ -175,7 +252,9 @@ export function generateThemeCSS(config: ThemeConfig): string {
       }`;
     }
 
-    css += `  --${entry.token}: ${value}; /* ${comment} */\n`;
+    css += includeComments
+      ? `  --${entry.token}: ${value}; /* ${comment} */\n`
+      : `  --${entry.token}: ${value};\n`;
   });
   css += "}\n\n";
 
@@ -228,7 +307,9 @@ export function generateThemeCSS(config: ThemeConfig): string {
       }`;
     }
 
-    css += `  --${entry.token}: ${value}; /* ${comment} */\n`;
+    css += includeComments
+      ? `  --${entry.token}: ${value}; /* ${comment} */\n`
+      : `  --${entry.token}: ${value};\n`;
   });
   css += "}\n";
 

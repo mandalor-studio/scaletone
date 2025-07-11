@@ -57,7 +57,7 @@ export function RadixThemeProvider({
       ? getCompatibleBrands(config.base as RadixGrayScale)
       : [];
 
-  const generatedCSS = generateThemeCSS(config);
+  const generatedCSS = generateThemeCSS(config, false);
 
   // Load config from localStorage on mount
   useEffect(() => {
@@ -157,7 +157,7 @@ export function useRadixTheme() {
       setConfig: () => {},
       availableThemes: Object.keys(allRadixPalettes) as RadixTheme[],
       compatibleBrands: getCompatibleBrands("sage"),
-      generatedCSS: generateThemeCSS(defaultConfig),
+      generatedCSS: generateThemeCSS(defaultConfig, false),
       setBase: () => {},
       setBrand: () => {},
       setPrimaryIntensity: () => {},
