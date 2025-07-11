@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
+import { Logo } from "../logo";
 
 export default function Footer() {
   return (
@@ -9,12 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex flex-col border-l-4 pl-6 border-primary">
-              <span className="font-bold text-lg">Scaletone</span>
-              <div className="text-sm text-muted-foreground">
-                <span>Beautiful themes for shadcn/ui</span>
-              </div>
-            </div>
+            <Logo />
             <p className="text-sm text-muted-foreground max-w-xs">
               Generate consistent, beautiful themes for your shadcn/ui and Radix
               UI components.
@@ -57,16 +53,19 @@ export default function Footer() {
                 <AvatarImage src="/eva&gio.png" />
                 <AvatarFallback>EJ</AvatarFallback>
               </Avatar>
-              <div className="flex flex-col">
+              <div className="flex flex-col max-w-[180px]">
                 <span className="text-sm font-medium group-hover:text-primary transition-colors">
                   Eva & Jo
                 </span>
-                <span className="text-xs text-muted-foreground">
-                  Design & Development
+                <span className="text-xs text-muted-foreground text-balance">
+                  We create mini-apps to help you scale your freedom
                 </span>
               </div>
             </Link>
             <div className="flex flex-wrap gap-2">
+              <Badge variant="secondary" className="text-xs">
+                React
+              </Badge>
               <Badge variant="secondary" className="text-xs">
                 Next.js
               </Badge>
@@ -75,6 +74,12 @@ export default function Footer() {
               </Badge>
               <Badge variant="secondary" className="text-xs">
                 Tailwind
+              </Badge>
+              <Badge variant="secondary" className="text-xs">
+                shadcn/ui
+              </Badge>
+              <Badge variant="secondary" className="text-xs">
+                Radix UI
               </Badge>
             </div>
           </div>
@@ -96,7 +101,19 @@ export default function Footer() {
                 href="https://twitter.com"
                 className="text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
-                Twitter
+                X
+              </Link>
+              <Link
+                href="https://instagram.com"
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Instagram
+              </Link>
+              <Link
+                href="https://tiktok.com"
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                TikTok
               </Link>
             </div>
           </div>
