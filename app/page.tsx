@@ -7,16 +7,14 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeSelector } from "@/components/theme-selector";
 import { CSSDisplay } from "@/components/css-display";
 import { ChartPieSeparatorNone } from "@/components/demos/pie-chart";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-4 max-w-4xl mx-auto p-4">
+    <div className="flex flex-col gap-4 max-w-4xl p-4">
       <div className="flex gap-2">
-        <ModeToggle />
         <ThemeSelector />
       </div>
 
@@ -60,6 +58,6 @@ export default function Home() {
           <CSSDisplay />
         </div>
       </div>
-    </main>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeModeProvider } from "../components/theme-mode-provider";
 import { RadixThemeProvider } from "../components/radix-theme-provider";
+import Header from "../components/layout/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +40,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <RadixThemeProvider>{children}</RadixThemeProvider>
+          <RadixThemeProvider>
+            <Header />
+            <main className="flex flex-col gap-4 mx-auto p-4">{children}</main>
+          </RadixThemeProvider>
         </ThemeModeProvider>
       </body>
     </html>
