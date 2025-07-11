@@ -24,11 +24,28 @@ export function CopyThemeButton({
     try {
       await navigator.clipboard.writeText(generatedCSS);
       setCopied(true);
-      toast.success("Theme copied to clipboard!", {
-        description: `${config.base}${
-          config.brand ? ` + ${config.brand}` : ""
-        } theme copied`,
-      });
+      toast.custom(
+        (t) => (
+          <div
+            className="bg-background border border-border pl-6 pr-8 py-4 gap-4 rounded-xl shadow flex items-center min-w-[200px]"
+            onClick={() => toast.dismiss(t)}
+          >
+            <Check className="h-4 w-4 " />
+            <div className="flex flex-col ">
+              <span className="text-foreground text-sm">
+                Theme copied to clipboard!
+              </span>
+              <span className="text-primary text-sm capitalize">
+                {config.base}
+                {config.brand ? ` + ${config.brand}` : ""} theme copied
+              </span>
+            </div>
+          </div>
+        ),
+        {
+          duration: 2000,
+        }
+      );
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error("Failed to copy theme:", error);
@@ -43,11 +60,7 @@ export function CopyThemeButton({
       onClick={handleCopyTheme}
       className={`transition-all duration-200 ${className}`}
     >
-      {copied ? (
-        <Check className="h-4 w-4 text-green-500" />
-      ) : (
-        <Copy className="h-4 w-4" />
-      )}
+      {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
     </Button>
   );
 }
