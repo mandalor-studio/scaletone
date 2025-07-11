@@ -59,7 +59,7 @@ export function getPrimaryForegroundColor(
     // High contrast: light foreground in light mode, dark foreground in dark mode
     return mode === "light"
       ? (palette.light as any)[`${brand}1`]
-      : (palette.dark as any)[`${brand}12`];
+      : (palette.dark as any)[`${brand}1`];
   }
 
   // Vibrant (scale 9): depends on the brand color
@@ -80,11 +80,11 @@ export function getPrimaryColor(
 
   if (mode === "light") {
     return intensity === "high-contrast"
-      ? (palette.lightA as any)[`${brand}${scale}`]
+      ? (palette.lightA as any)[`${brand}A${scale}`]
       : (palette.light as any)[`${brand}${scale}`];
   } else {
     return intensity === "high-contrast"
-      ? (palette.darkA as any)[`${brand}${scale}`]
+      ? (palette.darkA as any)[`${brand}A${scale}`]
       : (palette.dark as any)[`${brand}${scale}`];
   }
 }
@@ -199,7 +199,7 @@ export function generateThemeCSS(config: ThemeConfig): string {
       );
       comment = `${config.brand} ${
         config.primaryIntensity === "high-contrast"
-          ? "12"
+          ? "1"
           : radixBrandScalesWithLightForeground.includes(config.brand! as any)
           ? "12"
           : "1"
