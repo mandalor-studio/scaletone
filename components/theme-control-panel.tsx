@@ -13,9 +13,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
-import { Palette, X } from "lucide-react";
+import { Copy, Palette, X } from "lucide-react";
 import { radixGrayScales, allRadixPalettes } from "@/lib/colors/themes";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "./mode-toggle";
 
 function PaletteSwatch({
   paletteName,
@@ -34,6 +35,51 @@ function PaletteSwatch({
         <div key={i} className="w-3 h-1" style={{ background: color }} />
       ))}
     </div>
+  );
+}
+
+function PaletteButton({
+  paletteName,
+  mode,
+  isSelected,
+  onClick,
+  tooltipLabel,
+}: {
+  paletteName: string;
+  mode: "light" | "dark";
+  isSelected: boolean;
+  onClick: () => void;
+  tooltipLabel?: string;
+}) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          onClick={onClick}
+          className={cn(
+            "transition-all rounded-sm gap-2 duration-200 flex items-center justify-center",
+            isSelected && "flex-col"
+          )}
+        >
+          {isSelected && (
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="text-foreground text-xs font-bold drop-shadow-md"
+            >
+              ✓
+            </motion.span>
+          )}
+          <PaletteSwatch paletteName={paletteName} mode={mode} />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent
+        className="bg-accent text-foreground"
+        arrowClassName="bg-accent fill-accent"
+      >
+        <p className="capitalize">{tooltipLabel || paletteName}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -90,10 +136,10 @@ export function ThemeControlPanel() {
         initial={{ x: "100%" }}
         animate={{ x: isOpen ? "0%" : "100%" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed top-1/2 -translate-y-1/2 right-4 z-40 w-72"
+        className="fixed top-1/2 -translate-y-1/2 right-4 z-40 w-90"
       >
-        <Card className="shadow-xl h-[80vh] flex flex-col bg-background/20 backdrop-blur-sm">
-          <CardHeader className="pb-3 flex-shrink-0">
+        <Card className="shadow-xl  flex flex-col bg-background/20 backdrop-blur-sm">
+          <CardHeader className="flex-shrink-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg">Theme Control</CardTitle>
               <Button
@@ -106,12 +152,55 @@ export function ThemeControlPanel() {
               </Button>
             </div>
           </CardHeader>
+          <Separator />
           <CardContent className="flex-1 overflow-y-auto">
             <TooltipProvider>
               <div className="space-y-6">
-                {/* Current Theme Display */}
-                <div className="flex items-center gap-2 p-3 bg-muted rounded-lg">
-                  <PaletteSwatch paletteName={config.base} mode={mode} />
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm text-foreground font-medium">
+                      Current Theme
+                    </p>
+                    <ModeToggle />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground capitalize">
+                      <p className="border-r border-border pr-2">{mode}</p>
+                      <p>{config.base}</p>
+                      {config.brand && (
+                        <motion.p
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
+                          transition={{ duration: 0.2 }}
+                          className="border-l border-border pl-2"
+                        >
+                          {config.brand}
+                        </motion.p>
+                      )}
+                      {config.primaryIntensity && (
+                        <motion.p
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
+                          transition={{ duration: 0.2 }}
+                          className="border-l border-border pl-2"
+                        >
+                          {isNeutralBase && config.brand
+                            ? config.primaryIntensity
+                            : isNeutralBase
+                            ? "Neutral"
+                            : "Monotone"}
+                        </motion.p>
+                      )}
+                    </div>
+                    <Button variant="ghost" size="icon">
+                      <Copy className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                <Separator />
+                {/* <div className="flex items-center gap-2 p-3 rounded-lg">
                   <span className="font-medium capitalize">{config.base}</span>
                   <AnimatePresence mode="wait">
                     {config.brand && (
@@ -127,7 +216,7 @@ export function ThemeControlPanel() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </div> */}
 
                 {/* Base Palette Selection */}
                 <div className="space-y-3">
@@ -137,33 +226,13 @@ export function ThemeControlPanel() {
                     <p className="text-xs text-muted-foreground">Neutral</p>
                     <div className="flex gap-2">
                       {neutralThemes.map((theme) => (
-                        <Tooltip key={theme}>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => setBase(theme)}
-                              className={cn(
-                                "p-0 rounded-md transition-all duration-200 flex flex-col items-center",
-                                config.base === theme && "ring-2 ring-primary"
-                              )}
-                            >
-                              <PaletteSwatch paletteName={theme} mode={mode} />
-                              {config.base === theme && (
-                                <motion.span
-                                  initial={{ scale: 0 }}
-                                  animate={{ scale: 1 }}
-                                  className="text-white text-xs font-bold drop-shadow-md"
-                                >
-                                  ✓
-                                </motion.span>
-                              )}
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p className="capitalize">{theme}</p>
-                          </TooltipContent>
-                        </Tooltip>
+                        <PaletteButton
+                          key={theme}
+                          paletteName={theme}
+                          mode={mode}
+                          isSelected={config.base === theme}
+                          onClick={() => setBase(theme)}
+                        />
                       ))}
                     </div>
                   </div>
@@ -172,33 +241,13 @@ export function ThemeControlPanel() {
                     <p className="text-xs text-muted-foreground">Monotone</p>
                     <div className="flex gap-2 flex-wrap">
                       {brandThemes.map((theme) => (
-                        <Tooltip key={theme}>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => setBase(theme)}
-                              className={cn(
-                                "p-0 rounded-md transition-all duration-200 flex flex-col items-center",
-                                config.base === theme && "ring-2 ring-primary"
-                              )}
-                            >
-                              <PaletteSwatch paletteName={theme} mode={mode} />
-                              {config.base === theme && (
-                                <motion.span
-                                  initial={{ scale: 0 }}
-                                  animate={{ scale: 1 }}
-                                  className="text-white text-xs font-bold drop-shadow-md"
-                                >
-                                  ✓
-                                </motion.span>
-                              )}
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p className="capitalize">{theme}</p>
-                          </TooltipContent>
-                        </Tooltip>
+                        <PaletteButton
+                          key={theme}
+                          paletteName={theme}
+                          mode={mode}
+                          isSelected={config.base === theme}
+                          onClick={() => setBase(theme)}
+                        />
                       ))}
                     </div>
                   </div>
@@ -240,37 +289,13 @@ export function ThemeControlPanel() {
                         </div>
                         <div className="flex gap-2 flex-wrap">
                           {compatibleBrands.map((brand) => (
-                            <Tooltip key={brand}>
-                              <TooltipTrigger asChild>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() => setBrand(brand)}
-                                  className={cn(
-                                    "p-0 rounded-md transition-all duration-200 flex flex-col items-center",
-                                    config.brand === brand &&
-                                      "ring-2 ring-primary"
-                                  )}
-                                >
-                                  <PaletteSwatch
-                                    paletteName={brand}
-                                    mode={mode}
-                                  />
-                                  {config.brand === brand && (
-                                    <motion.span
-                                      initial={{ scale: 0 }}
-                                      animate={{ scale: 1 }}
-                                      className="text-white text-xs font-bold drop-shadow-md"
-                                    >
-                                      ✓
-                                    </motion.span>
-                                  )}
-                                </Button>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p className="capitalize">{brand}</p>
-                              </TooltipContent>
-                            </Tooltip>
+                            <PaletteButton
+                              key={brand}
+                              paletteName={brand}
+                              mode={mode}
+                              isSelected={config.brand === brand}
+                              onClick={() => setBrand(brand)}
+                            />
                           ))}
                         </div>
                       </div>

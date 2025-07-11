@@ -31,7 +31,7 @@ export default function GeneratorPage() {
     <div className="min-h-screen">
       <ThemeControlPanel />
 
-      <div className="container mx-auto p-6 ">
+      <div className="container mx-auto">
         <div className="space-y-8">
           <div className="text-center space-y-2">
             <h1 className="text-3xl font-bold">Theme Generator</h1>
@@ -40,7 +40,7 @@ export default function GeneratorPage() {
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto">
+          <div className="">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="space-y-6">
                 {/* Buttons */}
