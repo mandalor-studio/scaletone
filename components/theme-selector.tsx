@@ -26,7 +26,9 @@ function ThemeSelectorContent() {
     setPrimaryIntensity,
   } = useRadixTheme();
 
-  const isNeutralBase = radixGrayScales.includes(config.base as any);
+  const isNeutralBase = (radixGrayScales as readonly string[]).includes(
+    config.base
+  );
 
   return (
     <DropdownMenu>
@@ -69,7 +71,9 @@ function ThemeSelectorContent() {
           Monotone
         </div>
         {availableThemes
-          .filter((theme) => !radixGrayScales.includes(theme as any))
+          .filter(
+            (theme) => !(radixGrayScales as readonly string[]).includes(theme)
+          )
           .map((brand) => (
             <DropdownMenuItem
               key={brand}

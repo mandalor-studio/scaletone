@@ -148,12 +148,16 @@ export function useRadixTheme() {
     if (process.env.NODE_ENV === "development") {
       console.warn("useRadixTheme used outside of RadixThemeProvider");
     }
+    const defaultConfig: ThemeConfig = {
+      base: "sage",
+      primaryIntensity: "vibrant",
+    };
     return {
-      config: { base: "sage", primaryIntensity: "vibrant" as PrimaryIntensity },
+      config: defaultConfig,
       setConfig: () => {},
-      availableThemes: [],
-      compatibleBrands: [],
-      generatedCSS: "",
+      availableThemes: Object.keys(allRadixPalettes) as RadixTheme[],
+      compatibleBrands: getCompatibleBrands("sage"),
+      generatedCSS: generateThemeCSS(defaultConfig),
       setBase: () => {},
       setBrand: () => {},
       setPrimaryIntensity: () => {},

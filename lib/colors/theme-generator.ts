@@ -4,7 +4,6 @@ import {
   naturalPairings,
   destructivePairings,
   radixBrandScalesWithLightForeground,
-  radixBrandScalesWithDarkForeground,
   type AllRadixBrandScales,
   type RadixGrayScale,
   type DestructiveColor,
@@ -21,8 +20,11 @@ export type ThemeConfig = {
 
 export type ThemeType = "monotone" | "neutral" | "neutral-with-brand";
 
+// A Radix color scale is a record of color steps (e.g., "blue1", "blue2") to HSL values.
+type RadixScale = Record<string, string>;
+
 export function getThemeType(config: ThemeConfig): ThemeType {
-  if (radixGrayScales.includes(config.base as RadixGrayScale)) {
+  if ((radixGrayScales as readonly string[]).includes(config.base)) {
     return config.brand ? "neutral-with-brand" : "neutral";
   }
   return "monotone";
@@ -51,15 +53,15 @@ export function getPrimaryForegroundColor(
   mode: "light" | "dark"
 ): string {
   const palette = allRadixPalettes[brand];
-  const isLightForeground = radixBrandScalesWithLightForeground.includes(
-    brand as any
-  );
+  const isLightForeground = (
+    radixBrandScalesWithLightForeground as readonly string[]
+  ).includes(brand);
 
   if (intensity === "high-contrast") {
     // High contrast: light foreground in light mode, dark foreground in dark mode
     return mode === "light"
-      ? (palette.light as any)[`${brand}1`]
-      : (palette.dark as any)[`${brand}1`];
+      ? (palette.light as RadixScale)[`${brand}1`]!
+      : (palette.dark as RadixScale)[`${brand}1`]!;
   }
 
   // Vibrant (scale 9): depends on the brand color
@@ -76,12 +78,12 @@ export function getPrimaryColor(
 
   if (mode === "light") {
     return intensity === "high-contrast"
-      ? (palette.lightA as any)[`${brand}A${scale}`]
-      : (palette.light as any)[`${brand}${scale}`];
+      ? (palette.lightA as RadixScale)[`${brand}A${scale}`]!
+      : (palette.light as RadixScale)[`${brand}${scale}`]!;
   } else {
     return intensity === "high-contrast"
-      ? (palette.darkA as any)[`${brand}A${scale}`]
-      : (palette.dark as any)[`${brand}${scale}`];
+      ? (palette.darkA as RadixScale)[`${brand}A${scale}`]!
+      : (palette.dark as RadixScale)[`${brand}${scale}`]!;
   }
 }
 
@@ -90,14 +92,16 @@ export function generateChartColors(
   mode: "light" | "dark"
 ): Record<string, string> {
   const palette = allRadixPalettes[brand];
-  const colors = mode === "light" ? palette.light : palette.dark;
+  const colors = (
+    mode === "light" ? palette.light : palette.dark
+  ) as RadixScale;
 
   return {
-    "chart-1": (colors as any)[`${brand}9`],
-    "chart-2": (colors as any)[`${brand}7`],
-    "chart-3": (colors as any)[`${brand}3`],
-    "chart-4": (colors as any)[`${brand}5`],
-    "chart-5": (colors as any)[`${brand}12`],
+    "chart-1": colors[`${brand}9`]!,
+    "chart-2": colors[`${brand}7`]!,
+    "chart-3": colors[`${brand}3`]!,
+    "chart-4": colors[`${brand}5`]!,
+    "chart-5": colors[`${brand}12`]!,
   };
 }
 
@@ -118,7 +122,6 @@ export function generateThemeCSS(config: ThemeConfig): string {
 
   // For neutral + brand themes, generate custom CSS
   const neutralPalette = allRadixPalettes[basePalette as RadixGrayScale];
-  const brandPalette = allRadixPalettes[config.brand!];
   const destructivePalette = allRadixPalettes[destructiveColor];
 
   let css = `/* Generated theme: ${basePalette} + ${config.brand} (${config.primaryIntensity}) */\n\n`;
@@ -144,28 +147,29 @@ export function generateThemeCSS(config: ThemeConfig): string {
       comment = `${config.brand} ${
         config.primaryIntensity === "high-contrast"
           ? "1"
-          : radixBrandScalesWithLightForeground.includes(config.brand! as any)
+          : (radixBrandScalesWithLightForeground as readonly string[]).includes(
+              config.brand!
+            )
           ? "1"
           : "12"
       }`;
     } else if (entry.token.startsWith("chart-")) {
       const chartColors = generateChartColors(config.brand!, "light");
-      value = chartColors[entry.token];
+      value = chartColors[entry.token]!;
       comment = `${config.brand} ${entry.scale}`;
     } else if (entry.token === "destructive") {
-      value = (destructivePalette.light as any)[`${destructiveColor}9`];
+      value = (destructivePalette.light as RadixScale)[`${destructiveColor}9`]!;
       comment = `${destructiveColor} 9`;
     } else {
       // Use neutral palette
-      const colors =
-        entry.variant === "alpha"
-          ? neutralPalette.lightA
-          : neutralPalette.light;
+      const colors = (
+        entry.variant === "alpha" ? neutralPalette.lightA : neutralPalette.light
+      ) as RadixScale;
       const colorKey =
         entry.variant === "alpha"
           ? `${basePalette}A${entry.scale}`
           : `${basePalette}${entry.scale}`;
-      value = (colors as any)[colorKey];
+      value = colors[colorKey]!;
       comment = `${basePalette} ${entry.scale}${
         entry.variant === "alpha" ? " A" : ""
       }`;
@@ -196,26 +200,29 @@ export function generateThemeCSS(config: ThemeConfig): string {
       comment = `${config.brand} ${
         config.primaryIntensity === "high-contrast"
           ? "1"
-          : radixBrandScalesWithLightForeground.includes(config.brand! as any)
+          : (radixBrandScalesWithLightForeground as readonly string[]).includes(
+              config.brand!
+            )
           ? "12"
           : "1"
       }`;
     } else if (entry.token.startsWith("chart-")) {
       const chartColors = generateChartColors(config.brand!, "dark");
-      value = chartColors[entry.token];
+      value = chartColors[entry.token]!;
       comment = `${config.brand} ${entry.scale}`;
     } else if (entry.token === "destructive") {
-      value = (destructivePalette.dark as any)[`${destructiveColor}9`];
+      value = (destructivePalette.dark as RadixScale)[`${destructiveColor}9`]!;
       comment = `${destructiveColor} 9`;
     } else {
       // Use neutral palette
-      const colors =
-        entry.variant === "alpha" ? neutralPalette.darkA : neutralPalette.dark;
+      const colors = (
+        entry.variant === "alpha" ? neutralPalette.darkA : neutralPalette.dark
+      ) as RadixScale;
       const colorKey =
         entry.variant === "alpha"
           ? `${basePalette}A${entry.scale}`
           : `${basePalette}${entry.scale}`;
-      value = (colors as any)[colorKey];
+      value = colors[colorKey]!;
       comment = `${basePalette} ${entry.scale}${
         entry.variant === "alpha" ? " A" : ""
       }`;
