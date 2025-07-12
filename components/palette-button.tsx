@@ -4,26 +4,7 @@ import { motion } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { allRadixPalettes } from "@/lib/colors/themes";
 import { cn } from "@/lib/utils";
-
-function PaletteSwatch({
-  paletteName,
-  mode,
-}: {
-  paletteName: string;
-  mode: "light" | "dark";
-}) {
-  const palette =
-    allRadixPalettes[paletteName as keyof typeof allRadixPalettes];
-  if (!palette) return null;
-  const colors = Object.values(palette[mode]);
-  return (
-    <div className="flex flex-col items-center">
-      {colors.map((color, i) => (
-        <div key={i} className="w-3 h-1" style={{ background: color }} />
-      ))}
-    </div>
-  );
-}
+import { PaletteSwatch } from "./palette-swatch";
 
 export function PaletteButton({
   paletteName,
@@ -32,7 +13,7 @@ export function PaletteButton({
   onClick,
   tooltipLabel,
 }: {
-  paletteName: string;
+  paletteName: keyof typeof allRadixPalettes;
   mode: "light" | "dark";
   isSelected: boolean;
   onClick: () => void;
