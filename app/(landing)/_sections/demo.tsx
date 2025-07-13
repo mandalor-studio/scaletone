@@ -58,20 +58,10 @@ export function DemoSection() {
   return (
     <section
       id="examples"
-      className="py-16 lg:py-24 -mx-6 w-screen relative left-1/2 -translate-x-1/2"
+      className=" -mx-6 w-screen relative left-1/2 -translate-x-1/2"
     >
-      <div className="flex flex-col w-full max-w-6xl text-center items-center">
-        <div className="text-left space-y-4 mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight">
-            See your themes in action
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Real
-            applications showing how different Radix Color combinations create
-            unique, cohesive interfaces.
-          </p>
-        </div>
-      </div>
+      <h1 className="sr-only">See themes examples</h1>
+      <p className="sr-only">You can generate this themes here</p>
 
       <div className="relative overflow-hidden">
         <div className="space-y-8">
@@ -134,15 +124,6 @@ export function DemoSection() {
 
         {/* Right gradient overlay */}
         <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background via-background/80 to-transparent pointer-events-none z-10" />
-      </div>
-
-      <div className="px-6 max-w-6xl mx-auto">
-        <div className="text-center mt-12">
-          <p className="text-sm text-muted-foreground">
-            All interfaces automatically adapt to your selected theme colors and
-            respect light/dark mode preferences
-          </p>
-        </div>
       </div>
     </section>
   );
