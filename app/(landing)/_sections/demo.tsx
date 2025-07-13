@@ -60,7 +60,7 @@ export function DemoSection() {
       id="examples"
       className="py-16 lg:py-24 -mx-6 w-screen relative left-1/2 -translate-x-1/2"
     >
-      <div className="px-6 max-w-6xl mx-auto">
+      <div className="flex flex-col w-full max-w-6xl text-center items-center">
         <div className="text-left space-y-4 mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold tracking-tight">
             See your themes in action
@@ -79,13 +79,13 @@ export function DemoSection() {
           <Marquee speed={30} gradient={false} className="[&>div]:gap-8">
             {firstRowImages.map((image, index) => (
               <div key={`first-${index}`} className="flex-shrink-0 mx-4">
-                <div className="relative overflow-hidden rounded-lg border bg-background shadow-sm w-[400px] h-[300px]">
+                <div className="relative overflow-hidden rounded-lg border bg-background shadow-sm w-[400px] h-[250px]">
                   <Image
                     src={isDark ? image.darkSrc : image.lightSrc}
                     alt={`${image.name} theme example`}
                     width={400}
-                    height={300}
-                    className="object-cover transition-all hover:scale-105 w-full h-full"
+                    height={250}
+                    className="object-contain transition-all hover:scale-105 w-full h-full"
                     priority={index < 2}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -108,13 +108,13 @@ export function DemoSection() {
           >
             {secondRowImages.map((image, index) => (
               <div key={`second-${index}`} className="flex-shrink-0 mx-4">
-                <div className="relative overflow-hidden rounded-lg border bg-background shadow-sm w-[400px] h-[300px]">
+                <div className="relative overflow-hidden rounded-lg border bg-background shadow-sm w-[400px] h-[250px]">
                   <Image
                     src={isDark ? image.darkSrc : image.lightSrc}
                     alt={`${image.name} theme example`}
                     width={400}
-                    height={300}
-                    className="object-cover transition-all hover:scale-105 w-full h-full"
+                    height={250}
+                    className="object-contain transition-all hover:scale-105 w-full h-full"
                     priority={index < 2}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
