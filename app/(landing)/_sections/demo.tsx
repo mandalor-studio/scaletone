@@ -119,15 +119,12 @@ export function DemoSection() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <section className="py-16 space-y-8">
-      <div className="text-center space-y-4">
-        <Badge variant="outline" className="px-4 py-2">
-          ✨ Live Demo
-        </Badge>
+    <section id="examples" className="py-16 space-y-">
+      <div className=" space-y-4">
         <h2 className="text-3xl md:text-4xl font-bold">
           See Your Themes in Action
         </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-2xl ">
           Watch how your custom themes transform different interfaces with
           perfect consistency
         </p>
