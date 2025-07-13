@@ -121,6 +121,9 @@ function generateStaticThemeCSS(
 
   // Light mode
   css += ":root {\n";
+  css += includeComments
+    ? `  --radius: 0.625rem; /* border radius */\n`
+    : `  --radius: 0.625rem;\n`;
   lightMap.forEach((entry: MappingEntry) => {
     let value: string;
     let comment: string;
@@ -205,6 +208,9 @@ export function generateThemeCSS(
 
   // Light mode
   css += ":root {\n";
+  css += includeComments
+    ? `  --radius: 0.625rem; /* border radius */\n`
+    : `  --radius: 0.625rem;\n`;
   lightMap.forEach((entry: MappingEntry) => {
     let value: string;
     let comment: string;
