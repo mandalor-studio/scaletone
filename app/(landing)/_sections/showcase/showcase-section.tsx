@@ -7,7 +7,7 @@ export function ShowcaseSection() {
   return (
     <Section
       id="showcase"
-      className="flex flex-col py-12 gap-8 md:py-30 md:gap-16 relative max-w-none"
+      className="py-12 gap-8 md:py-30 md:gap-16 relative max-w-none"
     >
       <DottedBg />
       <ShowcaseSectionHeading />

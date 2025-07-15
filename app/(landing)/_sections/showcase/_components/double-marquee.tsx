@@ -82,11 +82,6 @@ const themeImages = [
     darkSrc: "/themes-examples/slate-cyan-vibrant-dark.png",
   },
   {
-    name: "Slate Iris Vibrant",
-    lightSrc: "/themes-examples/slate-iris-vibrant-light.png",
-    darkSrc: "/themes-examples/slate-iris-vibrant-dark.png",
-  },
-  {
     name: "Violet Monotone",
     lightSrc: "/themes-examples/violet-monotone-light.png",
     darkSrc: "/themes-examples/violet-monotone-dark.png",

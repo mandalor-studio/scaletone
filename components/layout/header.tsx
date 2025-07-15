@@ -59,7 +59,7 @@ type NavLinkProps = {
 
 const navLinks = [
   { href: "/#showcase", label: "See examples" },
-  { href: "/#why-radix-shadcn", label: "Why radix & shadcn" },
+  { href: "/#why", label: "Why radix & shadcn" },
   { href: "/#contact", label: "Contact" },
 ] satisfies { href: string; label: string }[];
 

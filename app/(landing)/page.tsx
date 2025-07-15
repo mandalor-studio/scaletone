@@ -1,6 +1,7 @@
 import { ShowcaseSection } from "./_sections/showcase/showcase-section";
 import { HeroSection } from "./_sections/hero/hero-section";
 import { ToolsSection } from "./_sections/tools/tools-section";
+import { WhySection } from "./_sections/why/why-section";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <HeroSection />
       <ToolsSection />
       <ShowcaseSection />
+      <WhySection />
     </div>
   );
 }
