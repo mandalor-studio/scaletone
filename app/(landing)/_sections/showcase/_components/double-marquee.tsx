@@ -93,18 +93,15 @@ const themeImages = [
   },
 ] satisfies ThemeImage[];
 
-export function DemoSection() {
+export function DoubleMarquee() {
   const firstRowImages = themeImages.slice(0, 9);
   const secondRowImages = themeImages.slice(9, 18);
 
   return (
-    <section
+    <div
       id="examples"
       className=" -mx-6 w-screen relative left-1/2 -translate-x-1/2"
     >
-      <h1 className="sr-only">See themes examples</h1>
-      <p className="sr-only">You can generate this themes here</p>
-
       <div className="relative overflow-hidden">
         <div className="space-y-8">
           {/* First marquee row - left to right */}
@@ -137,7 +134,7 @@ export function DemoSection() {
           </Marquee>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -160,7 +157,7 @@ const MarqueeItem = ({
         className="object-contain transition-all w-full h-full"
         priority={index < 2}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t dark:from-background/60 from-foreground/60 via-transparent to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 p-4">
         <h3 className="text-white font-medium text-sm">{image.name}</h3>
       </div>
