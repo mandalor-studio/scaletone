@@ -145,7 +145,7 @@ const MarqueeItem = ({
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
   return (
-    <div className="relative overflow-hidden rounded-lg mr-6 bg-transparent  border w-[400px] h-[250px]">
+    <div className="relative bg-background overflow-hidden rounded-lg mr-6  border w-[400px] h-[250px]">
       <Image
         src={isDark ? image.darkSrc : image.lightSrc}
         alt={`${image.name} theme example`}
