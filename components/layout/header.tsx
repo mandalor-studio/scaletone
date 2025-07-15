@@ -2,7 +2,6 @@ import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ModeToggle } from "../mode-toggle";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Logo } from "../logo";
 
 export default function Header() {
@@ -26,12 +25,6 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <Link href="https://evaandjo.com" className="hidden sm:block">
-              <Avatar>
-                <AvatarImage src="/eva&gio.png" />
-                <AvatarFallback>EJ</AvatarFallback>
-              </Avatar>
-            </Link>
             <Button
               variant="default"
               asChild
