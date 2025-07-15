@@ -1,20 +1,35 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
 
+type ThemeImage = {
+  name: string;
+  lightSrc: string;
+  darkSrc: string;
+};
+
 const themeImages = [
-  {
-    name: "Blue Monotone",
-    lightSrc: "/themes-examples/blue-monotone-light.png",
-    darkSrc: "/themes-examples/blue-monotone-dark.png",
-  },
   {
     name: "Gold Monotone",
     lightSrc: "/themes-examples/gold-monotone-light.png",
     darkSrc: "/themes-examples/gold-monotone-dark.png",
+  },
+  {
+    name: "Grass Monotone",
+    lightSrc: "/themes-examples/grass-monotone-light.png",
+    darkSrc: "/themes-examples/grass-monotone-dark.png",
+  },
+  {
+    name: "Gray Pink High Contrast",
+    lightSrc: "/themes-examples/gray-pink-high-contrast-light.png",
+    darkSrc: "/themes-examples/gray-pink-high-contrast-dark.png",
+  },
+  {
+    name: "Lime Monotone",
+    lightSrc: "/themes-examples/lime-monotone-light.png",
+    darkSrc: "/themes-examples/lime-monotone-dark.png",
   },
   {
     name: "Mauve Pink Vibrant",
@@ -22,38 +37,65 @@ const themeImages = [
     darkSrc: "/themes-examples/mauve-pink-vibrant-dark.png",
   },
   {
+    name: "Mauve Ruby Vibrant",
+    lightSrc: "/themes-examples/mauve-ruby-vibrant-light.png",
+    darkSrc: "/themes-examples/mauve-ruby-vibrant-dark.png",
+  },
+  {
+    name: "Olive Grass Vibrant",
+    lightSrc: "/themes-examples/olive-grass-vibrant-light.png",
+    darkSrc: "/themes-examples/olive-grass-vibrant-dark.png",
+  },
+  {
     name: "Olive Lime Vibrant",
     lightSrc: "/themes-examples/olive-lime-vibrant-light.png",
     darkSrc: "/themes-examples/olive-lime-vibrant-dark.png",
   },
   {
-    name: "Sage Mint High Contrast",
-    lightSrc: "/themes-examples/sage-mint-high-contrast-light.png",
-    darkSrc: "/themes-examples/sage-mint-high-contrast-dark.png",
+    name: "Sage Mint Vibrant",
+    lightSrc: "/themes-examples/sage-mint-vibrant-light.png",
+    darkSrc: "/themes-examples/sage-mint-vibrant-dark.png",
+  },
+  {
+    name: "Sage Neutral",
+    lightSrc: "/themes-examples/sage-neutral-light.png",
+    darkSrc: "/themes-examples/sage-neutral-dark.png",
+  },
+  {
+    name: "Sand Amber Vibrant",
+    lightSrc: "/themes-examples/sand-amber-vibrant-light.png",
+    darkSrc: "/themes-examples/sand-amber-vibrant-dark.png",
+  },
+  {
+    name: "Sand Orange Vibrant",
+    lightSrc: "/themes-examples/sand-orange-vibrant-light.png",
+    darkSrc: "/themes-examples/sand-orange-vibrant-dark.png",
+  },
+  {
+    name: "Slate Blue High Contrast",
+    lightSrc: "/themes-examples/slate-blue-high-contrast-light.png",
+    darkSrc: "/themes-examples/slate-blue-high-contrast-dark.png",
+  },
+  {
+    name: "Slate Cyan Vibrant",
+    lightSrc: "/themes-examples/slate-cyan-vibrant-light.png",
+    darkSrc: "/themes-examples/slate-cyan-vibrant-dark.png",
   },
   {
     name: "Slate Iris Vibrant",
     lightSrc: "/themes-examples/slate-iris-vibrant-light.png",
     darkSrc: "/themes-examples/slate-iris-vibrant-dark.png",
   },
-];
+  {
+    name: "Violet Monotone",
+    lightSrc: "/themes-examples/violet-monotone-light.png",
+    darkSrc: "/themes-examples/violet-monotone-dark.png",
+  },
+] satisfies ThemeImage[];
 
 export function DemoSection() {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
-  const isDark = resolvedTheme === "dark";
-
-  const firstRowImages = themeImages.slice(0, 3);
-  const secondRowImages = themeImages.slice(3, 6);
+  const firstRowImages = themeImages.slice(0, 9);
+  const secondRowImages = themeImages.slice(9, 18);
 
   return (
     <section
@@ -66,65 +108,62 @@ export function DemoSection() {
       <div className="relative overflow-hidden">
         <div className="space-y-8">
           {/* First marquee row - left to right */}
-          <Marquee speed={30} gradient={false} className="[&>div]:gap-8">
+          <Marquee
+            speed={60}
+            gradient={true}
+            gradientColor="var(--background)"
+            pauseOnHover={true}
+          >
             {firstRowImages.map((image, index) => (
-              <div key={`first-${index}`} className="flex-shrink-0 mx-4">
-                <div className="relative overflow-hidden rounded-lg border bg-background shadow-sm w-[400px] h-[250px]">
-                  <Image
-                    src={isDark ? image.darkSrc : image.lightSrc}
-                    alt={`${image.name} theme example`}
-                    width={400}
-                    height={250}
-                    className="object-contain transition-all hover:scale-105 w-full h-full"
-                    priority={index < 2}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="text-white font-medium text-sm">
-                      {image.name}
-                    </h3>
-                  </div>
-                </div>
-              </div>
+              <MarqueeItem key={`first-${index}`} image={image} index={index} />
             ))}
           </Marquee>
 
           {/* Second marquee row - right to left */}
           <Marquee
             direction="right"
-            speed={30}
-            gradient={false}
-            className="[&>div]:gap-8"
+            speed={40}
+            gradient={true}
+            gradientColor="var(--background)"
+            pauseOnHover={true}
           >
             {secondRowImages.map((image, index) => (
-              <div key={`second-${index}`} className="flex-shrink-0 mx-4">
-                <div className="relative overflow-hidden rounded-lg border bg-background shadow-sm w-[400px] h-[250px]">
-                  <Image
-                    src={isDark ? image.darkSrc : image.lightSrc}
-                    alt={`${image.name} theme example`}
-                    width={400}
-                    height={250}
-                    className="object-contain transition-all hover:scale-105 w-full h-full"
-                    priority={index < 2}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="text-white font-medium text-sm">
-                      {image.name}
-                    </h3>
-                  </div>
-                </div>
-              </div>
+              <MarqueeItem
+                key={`second-${index}`}
+                image={image}
+                index={index}
+              />
             ))}
           </Marquee>
         </div>
-
-        {/* Left gradient overlay */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background via-background/80 to-transparent pointer-events-none z-10" />
-
-        {/* Right gradient overlay */}
-        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background via-background/80 to-transparent pointer-events-none z-10" />
       </div>
     </section>
   );
 }
+
+const MarqueeItem = ({
+  image,
+  index,
+}: {
+  image: ThemeImage;
+  index: number;
+}) => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+  return (
+    <div className="relative overflow-hidden rounded-lg mr-6 bg-transparent  border w-[400px] h-[250px]">
+      <Image
+        src={isDark ? image.darkSrc : image.lightSrc}
+        alt={`${image.name} theme example`}
+        width={400}
+        height={400}
+        className="object-contain transition-all w-full h-full"
+        priority={index < 2}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <h3 className="text-white font-medium text-sm">{image.name}</h3>
+      </div>
+    </div>
+  );
+};
