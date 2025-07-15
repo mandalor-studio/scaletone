@@ -102,12 +102,7 @@ export function DoubleMarquee() {
       <div className="relative overflow-hidden">
         <div className="space-y-8">
           {/* First marquee row - left to right */}
-          <Marquee
-            speed={60}
-            gradient={true}
-            gradientColor="var(--background)"
-            pauseOnHover={true}
-          >
+          <Marquee speed={60} gradient={true} gradientColor="var(--background)">
             {firstRowImages.map((image, index) => (
               <MarqueeItem key={`first-${index}`} image={image} index={index} />
             ))}
@@ -119,7 +114,6 @@ export function DoubleMarquee() {
             speed={40}
             gradient={true}
             gradientColor="var(--background)"
-            pauseOnHover={true}
           >
             {secondRowImages.map((image, index) => (
               <MarqueeItem
@@ -145,7 +139,7 @@ const MarqueeItem = ({
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
   return (
-    <div className="relative bg-background overflow-hidden rounded-lg mr-6  border w-[400px] h-[250px]">
+    <div className="relative bg-background overflow-hidden rounded-lg mr-6 border md:w-[400px] md:h-[250px] w-[200px] h-[150px]">
       <Image
         src={isDark ? image.darkSrc : image.lightSrc}
         alt={`${image.name} theme example`}

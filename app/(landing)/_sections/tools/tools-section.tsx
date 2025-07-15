@@ -82,7 +82,7 @@ const ToolItem = ({ tool }: { tool: Tool }) => {
               }
             )}
           </div>
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-10 md:w-10 md:h-2 bg-foreground/50 rounded-full blur-md group-hover:opacity-100 opacity-0 transition-opacity duration-300 -z-10" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-2 bg-foreground/50 rounded-full blur-md group-hover:opacity-100 opacity-0 transition-opacity duration-300 -z-10" />
         </div>
         <div className="flex flex-col ">
           <h3 className="text-sm font-medium md:text-base">{tool.name}</h3>
