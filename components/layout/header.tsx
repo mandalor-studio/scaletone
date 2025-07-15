@@ -8,14 +8,14 @@ import { Logo } from "../logo";
 export default function Header() {
   return (
     <header className="sticky top-0 z-10 bg-background/60 backdrop-blur-sm border-b-4 border-background">
-      <div className="container mx-auto px-6 py-4 max-w-6xl">
+      <div className="container mx-auto px-6 xl:px-0 py-4 max-w-6xl w-full">
         <div className="flex items-center justify-between">
           <Link href="/">
             <Logo />
           </Link>
 
           {/* Navigation - hidden on mobile */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <NavLink
                 key={link.label.trim().toLowerCase()}
@@ -26,7 +26,6 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <ModeToggle />
             <Link href="https://evaandjo.com" className="hidden sm:block">
               <Avatar>
                 <AvatarImage src="/eva&gio.png" />
@@ -45,6 +44,7 @@ export default function Header() {
                 <ArrowRightIcon className="h-3 w-3 md:h-4 md:w-4" />
               </Link>
             </Button>
+            <ModeToggle />
           </div>
         </div>
       </div>

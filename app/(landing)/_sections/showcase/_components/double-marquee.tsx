@@ -12,9 +12,9 @@ type ThemeImage = {
 
 const themeImages = [
   {
-    name: "Gold Monotone",
-    lightSrc: "/themes-examples/gold-monotone-light.png",
-    darkSrc: "/themes-examples/gold-monotone-dark.png",
+    name: "Neutral Gray",
+    lightSrc: "/themes-examples/neutral-gray-light.png",
+    darkSrc: "/themes-examples/neutral-gray-dark.png",
   },
   {
     name: "Grass Monotone",
