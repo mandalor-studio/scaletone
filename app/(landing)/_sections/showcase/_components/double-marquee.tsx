@@ -98,10 +98,7 @@ export function DoubleMarquee() {
   const secondRowImages = themeImages.slice(9, 18);
 
   return (
-    <div
-      id="examples"
-      className=" -mx-6 w-screen relative left-1/2 -translate-x-1/2"
-    >
+    <div className=" -mx-6 w-screen relative left-1/2 -translate-x-1/2">
       <div className="relative overflow-hidden">
         <div className="space-y-8">
           {/* First marquee row - left to right */}

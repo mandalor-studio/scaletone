@@ -9,7 +9,7 @@ import { StackLogos } from "./stack-section";
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden flex flex-col items-start text-left md:items-center md:text-center space-y-8 pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32">
+    <section className="relative isolate overflow-hidden flex flex-col items-start text-left md:items-center md:text-center md:justify-center space-y-8 pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 min-h-[calc(100vh-100px)]">
       {/* Main Heading */}
       <div className="space-y-4 border-primary">
         <StackLogos />
