@@ -79,7 +79,7 @@ export function ComponentShowcaseGrid() {
   });
 
   return (
-    <div className="columns-1 md:columns-2 lg:columns-3 gap-4 lg:gap-6 space-y-4 lg:space-y-6">
+    <div className="columns-1 md:columns-2 lg:columns-3 gap-4 lg:gap-6 space-y-4 lg:space-y-6 max-w-6xl mx-auto pt-4 pb-12 md:py-12">
       {/* Social Media Scheduler */}
       <Card className="w-full break-inside-avoid">
         <CardHeader>
