@@ -45,6 +45,15 @@ export default function RootLayout({
         >
           <RadixThemeProvider>
             <div className="flex flex-col min-h-screen">
+              {/*  <div className="fixed inset-x-0 top-0 h-10 z-50 text-black text-sm flex items-center justify-center bg-amber-50 sm:bg-blue-100 md:bg-green-100 lg:bg-red-100 xl:bg-purple-100 2xl:bg-pink-100">
+                <div className="block sm:hidden">base</div>
+                <div className="hidden sm:block md:hidden">sm</div>
+                <div className="hidden md:block lg:hidden">md</div>
+                <div className="hidden lg:block xl:hidden">lg</div>
+                <div className="hidden xl:block 2xl:hidden">xl</div>
+                <div className="hidden 2xl:block">2xl</div>
+              </div> */}
+
               <Header />
               <main className="flex-1">{children}</main>
               <Footer />
