@@ -7,7 +7,7 @@ import { Logo } from "../logo";
 export default function Header() {
   return (
     <header className="sticky top-0 z-10 bg-background/60 backdrop-blur-sm border-b-4 border-background">
-      <div className="container mx-auto px-6 xl:px-0 py-4 max-w-6xl w-full">
+      <div className="container mx-auto px-4 py-4 max-w-6xl w-full">
         <div className="flex items-center justify-between">
           <Link href="/">
             <Logo />

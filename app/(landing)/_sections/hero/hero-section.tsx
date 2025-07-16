@@ -11,9 +11,9 @@ import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <Section className="relative lg:min-h-[calc(100vh-100px)] max-w-none lg:justify-center">
+    <Section className="relative lg:min-h-[calc(100vh-100px)] max-w-none lg:justify-center px-0">
       <DottedBg />
-      <div className="flex flex-col gap-6 pt-6 pb-18 max-w-6xl mx-auto w-full">
+      <div className="container px-4 flex flex-col gap-6 pt-6 pb-18 max-w-6xl mx-auto w-full">
         <div className="flex flex-col gap-4 w-full ">
           <SectionTitle isHero>
             Easy consistent themes

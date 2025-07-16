@@ -9,7 +9,7 @@ import {
 
 export function WhySection() {
   return (
-    <Section id="why" className="py-12 gap-8 md:py-30 md:gap-16 relative">
+    <Section id="why" className="py-12 gap-8 md:py-30 md:gap-16 relative ">
       <div className="absolute w-[33%] h-[50%] -z-10 top-5 md:top-10 left-1/2 -translate-x-1/2 rounded-full blur-3xl bg-primary/10" />
       {/* Title and subtitle */}
       <div className="text-center max-w-3xl mx-auto">

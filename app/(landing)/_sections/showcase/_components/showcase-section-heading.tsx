@@ -1,6 +1,6 @@
 export function ShowcaseSectionHeading() {
   return (
-    <div className="flex flex-col gap-2 max-w-6xl mx-auto w-full ">
+    <div className="container px-4 flex flex-col gap-2 max-w-6xl mx-auto w-full ">
       <h1 className="text-2xl md:text-4xl font-bold">
         Explore your perfect starting point
       </h1>
