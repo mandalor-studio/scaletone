@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
 import {
   Section,
   SectionDescription,
   SectionTitle,
-} from "../../../../components/layout/section";
+} from "@/components/layout/section";
 
 export function WhySection() {
   return (
@@ -23,39 +23,45 @@ export function WhySection() {
       {/* 3 blocks layout */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         <SectionItem>
-          <h3 className="text-lg font-semibold">
-            Radix Colors as a foundation
-          </h3>
-          <p className="text-muted-foreground text-sm">
+          <SectionItemTitle>Radix Colors as a foundation</SectionItemTitle>
+          <SectionItemDescription>
             We use{" "}
-            <a href="https://www.radix-ui.com/colors" className="underline">
+            <Link
+              href="https://www.radix-ui.com/colors/docs/palette-composition/composing-a-palette"
+              className="underline"
+              target="_blank"
+            >
               Radix Colors
-            </a>{" "}
+            </Link>{" "}
             as the backbone of this system. Their accessible and consistent
             palettes are perfect for building modern themes across light and
             dark modes, with clean semantic scales.
-          </p>
+          </SectionItemDescription>
         </SectionItem>
 
         <SectionItem>
-          <h3 className="text-lg font-semibold">Simple by design</h3>
-          <p className="text-muted-foreground text-sm">
+          <SectionItemTitle>Simple by design</SectionItemTitle>
+          <SectionItemDescription>
             Most theme generators are full of endless options. Ours gives you
             solid, clean defaults and opinionated logic — so you get results
             fast, without getting lost in complexity.
-          </p>
+          </SectionItemDescription>
         </SectionItem>
 
         <SectionItem>
-          <h3 className="text-lg font-semibold">Tailored for shadcn/ui</h3>
-          <p className="text-muted-foreground text-sm">
+          <SectionItemTitle>Tailored for shadcn/ui</SectionItemTitle>
+          <SectionItemDescription>
             This tool was built for{" "}
-            <a href="https://ui.shadcn.com/" className="underline">
+            <Link
+              href="https://ui.shadcn.com/"
+              className="underline"
+              target="_blank"
+            >
               shadcn/ui
-            </a>{" "}
+            </Link>{" "}
             and Tailwind CSS. The generated themes drop right into your project
             — without config headaches or manual overrides.
-          </p>
+          </SectionItemDescription>
         </SectionItem>
       </div>
 
@@ -78,4 +84,12 @@ function SectionItem({ children }: { children: React.ReactNode }) {
       {children}
     </div>
   );
+}
+
+function SectionItemTitle({ children }: { children: React.ReactNode }) {
+  return <h3 className="text-lg font-semibold">{children}</h3>;
+}
+
+function SectionItemDescription({ children }: { children: React.ReactNode }) {
+  return <p className="text-muted-foreground text-sm">{children}</p>;
 }

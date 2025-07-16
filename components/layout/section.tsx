@@ -22,7 +22,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
       <section
         ref={ref}
         className={cn(
-          "flex flex-col container mx-auto px-6 max-w-6xl",
+          "flex flex-col container mx-auto max-w-6xl px-4 lg:px-0",
           className
         )}
         {...props}

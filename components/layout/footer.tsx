@@ -12,8 +12,8 @@ export default function Footer() {
           <div className="space-y-4">
             <Logo />
             <p className="text-sm text-muted-foreground max-w-xs">
-              Generate consistent, beautiful themes for your shadcn/ui and Radix
-              UI components.
+              Generate consistent, beautiful themes for your shadcn/ui
+              components.
             </p>
           </div>
 
@@ -22,13 +22,13 @@ export default function Footer() {
             <h3 className="font-semibold">Resources</h3>
             <div className="flex flex-col space-y-2">
               <Link
-                href="/#examples"
+                href="/#showcase"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Examples
               </Link>
               <Link
-                href="/#why-radix-shadcn"
+                href="/#why"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Why Radix & shadcn
@@ -53,12 +53,13 @@ export default function Footer() {
                 <AvatarImage src="/eva&gio.png" />
                 <AvatarFallback>EJ</AvatarFallback>
               </Avatar>
-              <div className="flex flex-col max-w-[180px]">
+              <div className="flex flex-col max-w-[200px]">
                 <span className="text-sm font-medium group-hover:text-primary transition-colors">
                   Eva & Jo
                 </span>
                 <span className="text-xs text-muted-foreground text-balance">
-                  We create mini-apps to help you scale your freedom
+                  We build custom mini-apps to help creative pros scale their
+                  freedom.
                 </span>
               </div>
             </Link>
@@ -88,7 +89,8 @@ export default function Footer() {
         <div className="mt-8 pt-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-muted-foreground">
-              © 2024 Scaletone. Built with shadcn/ui and Radix UI.
+              © mandalor studio {new Date().getFullYear()} — A project by Eva &
+              Jo. Built with shadcn/ui and Radix Colors.
             </p>
             <div className="flex items-center gap-4">
               <Link
