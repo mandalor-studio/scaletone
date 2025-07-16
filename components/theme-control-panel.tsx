@@ -9,12 +9,12 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Separator } from "./ui/separator";
 import { TooltipProvider } from "./ui/tooltip";
-import { 
-  Drawer, 
-  DrawerContent, 
-  DrawerHeader, 
-  DrawerTitle, 
-  DrawerTrigger 
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
 } from "./ui/drawer";
 import { Palette, X } from "lucide-react";
 import { radixGrayScales } from "@/lib/colors/themes";
@@ -24,7 +24,7 @@ import { PaletteButton } from "./palette-button";
 const MotionCard = motion(Card);
 
 export function ThemeControlPanel() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const { theme: resolvedTheme } = useTheme();
 
@@ -174,9 +174,7 @@ export function ThemeControlPanel() {
             >
               <Separator className="mt-6" />
               <div className="space-y-3 pt-6">
-                <h3 className="font-medium text-sm">
-                  Primary Intensity
-                </h3>
+                <h3 className="font-medium text-sm">Primary Intensity</h3>
                 <div className="grid grid-cols-2 gap-2">
                   <Button
                     variant={
