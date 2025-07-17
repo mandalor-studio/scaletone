@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useRadixTheme } from "./radix-theme-provider";
 import { ModeToggle } from "./mode-toggle";
 import { CopyThemeButton } from "./copy-theme-button";

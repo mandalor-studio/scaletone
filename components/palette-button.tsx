@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { allRadixPalettes } from "@/lib/colors/themes";
 import { cn } from "@/lib/utils";

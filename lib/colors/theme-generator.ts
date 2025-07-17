@@ -23,7 +23,7 @@ export type ThemeType = "monotone" | "neutral" | "neutral-with-brand";
 // A Radix color scale is a record of color steps (e.g., "blue1", "blue2") to HSL values.
 type RadixScale = Record<string, string>;
 
-export function getThemeType(config: ThemeConfig): ThemeType {
+function getThemeType(config: ThemeConfig): ThemeType {
   if ((radixGrayScales as readonly string[]).includes(config.base)) {
     return config.brand ? "neutral-with-brand" : "neutral";
   }
@@ -40,14 +40,14 @@ export function getDefaultBrand(neutral: RadixGrayScale): AllRadixBrandScales {
   return naturalPairings[neutral][0];
 }
 
-export function getDestructiveColor(config: ThemeConfig): DestructiveColor {
+function getDestructiveColor(config: ThemeConfig): DestructiveColor {
   if (config.brand) {
     return destructivePairings[config.brand];
   }
   return "red";
 }
 
-export function getPrimaryForegroundColor(
+function getPrimaryForegroundColor(
   brand: AllRadixBrandScales,
   intensity: PrimaryIntensity,
   mode: "light" | "dark"
@@ -68,7 +68,7 @@ export function getPrimaryForegroundColor(
   return isLightForeground ? "#fff" : "#1D211C";
 }
 
-export function getPrimaryColor(
+function getPrimaryColor(
   brand: AllRadixBrandScales,
   intensity: PrimaryIntensity,
   mode: "light" | "dark"
@@ -87,7 +87,7 @@ export function getPrimaryColor(
   }
 }
 
-export function generateChartColors(
+function generateChartColors(
   brand: AllRadixBrandScales,
   mode: "light" | "dark"
 ): Record<string, string> {

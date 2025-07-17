@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useMediaQuery } from "usehooks-ts";
 import { useRadixTheme } from "./radix-theme-provider";
 import { useTheme } from "next-themes";
@@ -24,7 +24,7 @@ import { PaletteButton } from "./palette-button";
 const MotionCard = motion(Card);
 
 export function ThemeControlPanel() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const { theme: resolvedTheme } = useTheme();
 

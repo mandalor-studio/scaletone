@@ -58,7 +58,9 @@ export async function POST(request: Request) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Basic ${Buffer.from(`anystring:${API_KEY}`).toString("base64")}`,
+          Authorization: `Basic ${Buffer.from(`anystring:${API_KEY}`).toString(
+            "base64"
+          )}`,
         },
         body: JSON.stringify(memberData),
       }
@@ -66,13 +68,14 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       const errorData = await response.json();
-      
+
       // Handle duplicate email (user already subscribed)
       if (errorData.title === "Member Exists") {
         return NextResponse.json(
-          { 
-            success: true, 
-            message: "Thank you! Your message has been received. You're already subscribed to our updates." 
+          {
+            success: true,
+            message:
+              "Thank you! Your message has been received. You're already subscribed to our updates.",
           },
           { status: 200 }
         );
@@ -85,16 +88,14 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await response.json();
-    
     return NextResponse.json(
-      { 
-        success: true, 
-        message: "Thank you! Your message has been received and you've been subscribed to our updates." 
+      {
+        success: true,
+        message:
+          "Thank you! Your message has been received and you've been subscribed to our updates.",
       },
       { status: 200 }
     );
-
   } catch (error) {
     console.error("Error processing request:", error);
     return NextResponse.json(
