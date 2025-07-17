@@ -1,20 +1,20 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://scaletone.com';
+  const baseUrl = "https://scaletone.mandalor.studio";
   const lastModified = new Date();
 
   return [
     {
       url: baseUrl,
       lastModified,
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/generator`,
       lastModified,
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     // Add more pages as needed

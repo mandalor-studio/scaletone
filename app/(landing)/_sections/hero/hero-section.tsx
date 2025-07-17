@@ -3,7 +3,7 @@ import {
   SectionDescription,
   SectionTitle,
 } from "@/components/layout/section";
-import { DottedBg } from "@/components/dotted-bg";
+import { DottedBg } from "@/components/layout/dotted-bg";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";

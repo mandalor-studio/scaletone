@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
-import { Logo } from "../logo";
+import { Logo } from "../scaletone-logo";
 
 export default function Footer() {
   return (

@@ -3,7 +3,7 @@ import {
   SectionTitle,
   SectionDescription,
 } from "@/components/layout/section";
-import { DottedBg } from "@/components/dotted-bg";
+import { DottedBg } from "@/components/layout/dotted-bg";
 import { AboutForm } from "./about-form";
 
 export function AboutSection() {

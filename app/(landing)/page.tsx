@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Scaletone - Professional Theme Generator for shadcn/ui & Radix UI",
     description:
       "Create beautiful, accessible themes for shadcn/ui and Radix UI components in minutes. Generate consistent design systems with Radix Colors.",
-    url: "https://scaletone.com",
+    url: "https://scaletone.mandalor.studio",
     images: [
       {
         url: "/opengraph-image",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     images: ["/twitter-image"],
   },
   alternates: {
-    canonical: "https://scaletone.com",
+    canonical: "https://scaletone.mandalor.studio",
   },
 };
 

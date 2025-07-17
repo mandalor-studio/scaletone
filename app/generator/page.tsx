@@ -1,9 +1,10 @@
-import { ThemeControlPanel } from "@/components/theme-control-panel";
+import { ThemeControlPanel } from "@/app/generator/_panel/theme-control-panel";
 import { BentoGrid } from "./_bento/bento-grid";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Theme Generator - Create Custom shadcn/ui & Radix UI Themes | Scaletone",
+  title:
+    "Theme Generator - Create Custom shadcn/ui & Radix UI Themes | Scaletone",
   description:
     "Interactive theme generator for shadcn/ui and Radix UI components. Choose from Radix Colors, customize your design system, and generate production-ready CSS themes instantly.",
   keywords: [
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     title: "Theme Generator - Create Custom shadcn/ui & Radix UI Themes",
     description:
       "Interactive theme generator for shadcn/ui and Radix UI components. Choose from Radix Colors and generate production-ready CSS themes instantly.",
-    url: "https://scaletone.com/generator",
+    url: "https://scaletone.mandalor.studio/generator",
     images: [
       {
         url: "/opengraph-image",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     images: ["/twitter-image"],
   },
   alternates: {
-    canonical: "https://scaletone.com/generator",
+    canonical: "https://scaletone.mandalor.studio/generator",
   },
 };
 

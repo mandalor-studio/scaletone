@@ -1,5 +1,5 @@
-import { allRadixPalettes } from "../lib/colors/themes";
-import { cn } from "../lib/utils";
+import { allRadixPalettes } from "@/lib/colors/themes";
+import { cn } from "@/lib/utils";
 
 export function PaletteSwatch({
   paletteName,

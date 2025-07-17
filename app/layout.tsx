@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeModeProvider } from "../components/theme-mode-provider";
-import { RadixThemeProvider } from "../components/radix-theme-provider";
-import Header from "../components/layout/header";
-import Footer from "../components/layout/footer";
+import { ThemeModeProvider } from "@/components/providers/theme-mode-provider";
+import { RadixThemeProvider } from "@/components/providers/radix-theme-provider";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 import { Toaster } from "sonner";
 
 const geistSans = Geist({
@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     "accessibility",
     "color palette",
     "UI themes",
+    "tailwindcss",
     "Radix Colors",
   ],
   authors: [{ name: "Mandalor Studio" }],
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://scaletone.com"),
+  metadataBase: new URL("https://scaletone.mandalor.studio"),
   alternates: {
     canonical: "/",
   },
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     title: "Scaletone - Shadcn/Radix Theme Generator",
     description:
       "Generate beautiful, accessible themes for shadcn/ui and Radix UI components using Radix Colors. Create consistent design systems with easy theme customization.",
-    url: "https://scaletone.com",
+    url: "https://scaletone.mandalor.studio",
     siteName: "Scaletone",
     images: [
       {
@@ -103,31 +104,32 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "Scaletone",
-              "url": "https://scaletone.com",
-              "description": "Generate beautiful, accessible themes for shadcn/ui and Radix UI components using Radix Colors. Create consistent design systems with easy theme customization.",
-              "applicationCategory": "DeveloperApplication",
-              "operatingSystem": "Web",
-              "offers": {
+              name: "Scaletone",
+              url: "https://scaletone.mandalor.studio",
+              description:
+                "Generate beautiful, accessible themes for shadcn/ui and Radix UI components using Radix Colors. Create consistent design systems with easy theme customization.",
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "Web",
+              offers: {
                 "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
+                price: "0",
+                priceCurrency: "USD",
               },
-              "creator": {
+              creator: {
                 "@type": "Organization",
-                "name": "Mandalor Studio",
-                "url": "https://mandalor.studio"
+                name: "Mandalor Studio",
+                url: "https://mandalor.studio",
               },
-              "featureList": [
+              featureList: [
                 "Generate themes for shadcn/ui components",
                 "Generate themes for Radix UI components",
                 "Use Radix Colors for consistent palettes",
                 "Export production-ready CSS",
                 "Real-time theme preview",
-                "Accessibility-focused color combinations"
+                "Accessibility-focused color combinations",
               ],
-              "screenshot": "https://scaletone.com/og-image.jpg"
-            })
+              screenshot: "https://scaletone.mandalor.studio/og-image.jpg",
+            }),
           }}
         />
       </head>
@@ -142,15 +144,6 @@ export default function RootLayout({
         >
           <RadixThemeProvider>
             <div className="flex flex-col min-h-screen">
-              {/*  <div className="fixed inset-x-0 top-0 h-10 z-50 text-black text-sm flex items-center justify-center bg-amber-50 sm:bg-blue-100 md:bg-green-100 lg:bg-red-100 xl:bg-purple-100 2xl:bg-pink-100">
-                <div className="block sm:hidden">base</div>
-                <div className="hidden sm:block md:hidden">sm</div>
-                <div className="hidden md:block lg:hidden">md</div>
-                <div className="hidden lg:block xl:hidden">lg</div>
-                <div className="hidden xl:block 2xl:hidden">xl</div>
-                <div className="hidden 2xl:block">2xl</div>
-              </div> */}
-
               <Header />
               <main className="flex-1">{children}</main>
               <Footer />

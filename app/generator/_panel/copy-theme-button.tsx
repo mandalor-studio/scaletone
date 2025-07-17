@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Copy, Check } from "lucide-react";
 import { toast } from "sonner";
-import { useRadixTheme } from "./radix-theme-provider";
+import { useRadixTheme } from "@/components/providers/radix-theme-provider";
 
 interface CopyThemeButtonProps {
   variant?: "ghost" | "outline" | "default";

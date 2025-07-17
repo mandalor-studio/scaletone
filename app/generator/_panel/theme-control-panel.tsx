@@ -3,21 +3,25 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useMediaQuery } from "usehooks-ts";
-import { useRadixTheme } from "./radix-theme-provider";
+import { useRadixTheme } from "@/components/providers/radix-theme-provider";
 import { useTheme } from "next-themes";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Separator } from "./ui/separator";
-import { TooltipProvider } from "./ui/tooltip";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import {
   Drawer,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "./ui/drawer";
+} from "@/components/ui/drawer";
 import { Palette, X } from "lucide-react";
-import { radixGrayScales } from "@/lib/colors/themes";
+import {
+  AllRadixBrandScales,
+  allRadixPalettes,
+  radixGrayScales,
+} from "@/lib/colors/themes";
 import { CurrentThemeDisplay } from "./current-theme-display";
 import { PaletteButton } from "./palette-button";
 
@@ -98,7 +102,7 @@ export function ThemeControlPanel() {
           <div className="space-y-2">
             <p className="text-xs text-muted-foreground">Monotone</p>
             <div className="flex gap-2 flex-wrap">
-              {brandThemes.map((theme) => (
+              {brandThemes.map((theme: keyof typeof allRadixPalettes) => (
                 <PaletteButton
                   key={theme}
                   paletteName={theme}
@@ -146,7 +150,7 @@ export function ThemeControlPanel() {
                   </AnimatePresence>
                 </div>
                 <div className="flex gap-2 flex-wrap">
-                  {compatibleBrands.map((brand) => (
+                  {compatibleBrands.map((brand: AllRadixBrandScales) => (
                     <PaletteButton
                       key={brand}
                       paletteName={brand}

@@ -1,8 +1,8 @@
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { ModeToggle } from "../mode-toggle";
-import { Logo } from "../logo";
+import { ModeToggle } from "../ui/mode-toggle";
+import { Logo } from "../scaletone-logo";
 
 export default function Header() {
   return (

@@ -1,4 +1,4 @@
-import { DottedBg } from "@/components/dotted-bg";
+import { DottedBg } from "@/components/layout/dotted-bg";
 import { Section } from "@/components/layout/section";
 import { DoubleMarquee } from "./_components/double-marquee";
 import { ShowcaseSectionHeading } from "./_components/showcase-section-heading";
