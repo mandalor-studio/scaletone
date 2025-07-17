@@ -143,7 +143,7 @@ const MarqueeItem = ({
         className="object-contain transition-all w-full h-full"
         priority={index < 2}
       />
-      <div className="absolute inset-0 bg-gradient-to-t dark:from-background/60 from-foreground/60 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 p-4">
         <h3 className="text-white font-medium text-sm">{image.name}</h3>
       </div>
