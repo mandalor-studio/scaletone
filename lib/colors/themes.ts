@@ -394,7 +394,7 @@ export const naturalPairings = {
   sand: ["amber", "yellow", "orange", "brown"],
 } satisfies Record<RadixGrayScale, Array<AllRadixBrandScales>>;
 
-const destructiveColors = ["red", "ruby", "tomato"] as const;
+export const destructiveColors = ["red", "ruby", "tomato"] as const;
 export type DestructiveColor = (typeof destructiveColors)[number];
 
 export const destructivePairings = {
@@ -424,5 +424,3 @@ export const destructivePairings = {
   yellow: "tomato",
   amber: "tomato",
 } satisfies Record<AllRadixBrandScales, DestructiveColor>;
-
-
