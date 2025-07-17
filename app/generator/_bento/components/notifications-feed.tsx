@@ -32,14 +32,6 @@ const notifications = [
     time: "3 hours ago",
     read: true,
   },
-  {
-    id: 4,
-    type: "success",
-    title: "Profile updated",
-    message: "Your profile information has been saved",
-    time: "1 day ago",
-    read: true,
-  },
 ];
 
 export function NotificationsFeed() {
@@ -70,8 +62,8 @@ export function NotificationsFeed() {
   };
 
   return (
-    <Card className="col-span-12 sm:col-span-6 lg:col-span-4">
-      <CardHeader className="pb-4">
+    <Card className="h-full w-full">
+      <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2 text-lg">
             <Bell className="h-5 w-5" />
@@ -88,7 +80,7 @@ export function NotificationsFeed() {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-3 max-h-80 overflow-y-auto">
+        <div className="space-y-3 max-h-100 overflow-y-auto">
           {items.map((notification) => (
             <div
               key={notification.id}

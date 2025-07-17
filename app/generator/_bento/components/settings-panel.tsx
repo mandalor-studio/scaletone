@@ -6,7 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Settings, Bell, Shield, Palette } from "lucide-react";
 
@@ -17,7 +23,7 @@ export function SettingsPanel() {
   const [volume, setVolume] = React.useState([75]);
 
   return (
-    <Card className="col-span-12 sm:col-span-6 lg:col-span-4">
+    <Card className="h-full w-full">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2 text-lg">
           <Settings className="h-5 w-5" />

@@ -202,7 +202,7 @@ export function DataTableDemo() {
   });
 
   return (
-    <Card className="hidden md:block col-span-8">
+    <Card>
       <CardHeader className="pb-2">
         <CardTitle>Payments</CardTitle>
       </CardHeader>

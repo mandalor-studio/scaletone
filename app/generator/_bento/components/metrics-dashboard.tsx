@@ -54,7 +54,7 @@ const metrics = [
 
 export function MetricsDashboard() {
   return (
-    <Card className="col-span-12 lg:col-span-8">
+    <Card className="h-full w-full">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2 text-lg">
           <Activity className="h-5 w-5" />

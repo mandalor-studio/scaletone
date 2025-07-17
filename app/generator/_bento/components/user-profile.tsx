@@ -7,13 +7,13 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
-import { User, MapPin, Calendar, Mail, Phone, Edit } from "lucide-react";
+import { MapPin, Calendar, Mail, Phone, Edit } from "lucide-react";
 
 export function UserProfile() {
   const completionPercentage = 85;
-  
+
   return (
-    <Card className="col-span-12 sm:col-span-6 lg:col-span-4">
+    <Card>
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -54,7 +54,9 @@ export function UserProfile() {
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-sm font-medium">Profile Completion</span>
-            <span className="text-sm text-muted-foreground">{completionPercentage}%</span>
+            <span className="text-sm text-muted-foreground">
+              {completionPercentage}%
+            </span>
           </div>
           <Progress value={completionPercentage} className="h-2" />
         </div>

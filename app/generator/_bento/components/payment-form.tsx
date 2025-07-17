@@ -17,7 +17,7 @@ import { CreditCard, Lock } from "lucide-react";
 
 export function PaymentForm() {
   return (
-    <Card className="col-span-12 sm:col-span-6 lg:col-span-4">
+    <Card className="h-full w-full">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2 text-lg">
           <CreditCard className="h-5 w-5" />

@@ -20,7 +20,7 @@ export function AnalyticsChart() {
   const growthPercentage = ((totalGrowth / data[0].value) * 100).toFixed(1);
 
   return (
-    <Card className="col-span-12 sm:col-span-6 lg:col-span-4">
+    <Card>
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2 text-lg">
           <BarChart3 className="h-5 w-5" />
@@ -49,21 +49,14 @@ export function AnalyticsChart() {
               {data.map((item) => (
                 <div
                   key={item.month}
-                  className="flex flex-col items-center flex-1"
+                  className="flex flex-col items-center flex-1 h-full"
                 >
-                  <div className="relative w-full">
+                  <div className="relative w-full h-full flex items-end">
                     <div
-                      className="bg-primary/20 rounded-t-sm w-full transition-all duration-300 hover:bg-primary/30"
+                      className="bg-primary rounded-t-sm w-full transition-all duration-300 hover:bg-primary/90"
                       style={{
                         height: `${(item.value / maxValue) * 100}%`,
                         minHeight: "8px",
-                      }}
-                    />
-                    <div
-                      className="bg-primary rounded-t-sm w-full absolute bottom-0 transition-all duration-300"
-                      style={{
-                        height: `${(item.value / maxValue) * 80}%`,
-                        minHeight: "4px",
                       }}
                     />
                   </div>
