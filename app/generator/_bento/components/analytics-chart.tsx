@@ -7,12 +7,12 @@ import { TrendingUp, TrendingDown, BarChart3 } from "lucide-react";
 
 export function AnalyticsChart() {
   const data = [
-    { month: "Jan", value: 65, growth: 12 },
-    { month: "Feb", value: 78, growth: 20 },
-    { month: "Mar", value: 52, growth: -15 },
-    { month: "Apr", value: 91, growth: 75 },
-    { month: "May", value: 84, growth: -8 },
-    { month: "Jun", value: 95, growth: 13 },
+    { month: "Jan", value: 65, growth: 12, color: "bg-chart-4" },
+    { month: "Feb", value: 78, growth: 20, color: "bg-chart-2" },
+    { month: "Mar", value: 52, growth: -15, color: "bg-chart-3" },
+    { month: "Apr", value: 91, growth: 75, color: "bg-chart-1" },
+    { month: "May", value: 84, growth: -8, color: "bg-chart-2" },
+    { month: "Jun", value: 95, growth: 13, color: "bg-chart-5" },
   ];
 
   const maxValue = Math.max(...data.map((d) => d.value));
@@ -20,7 +20,7 @@ export function AnalyticsChart() {
   const growthPercentage = ((totalGrowth / data[0].value) * 100).toFixed(1);
 
   return (
-    <Card>
+    <Card className="h-full w-full">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2 text-lg">
           <BarChart3 className="h-5 w-5" />
@@ -53,7 +53,7 @@ export function AnalyticsChart() {
                 >
                   <div className="relative w-full h-full flex items-end">
                     <div
-                      className="bg-primary rounded-t-sm w-full transition-all duration-300 hover:bg-primary/90"
+                      className={`rounded-t-sm w-full transition-all duration-300 hover:bg-primary/90 ${item.color}`}
                       style={{
                         height: `${(item.value / maxValue) * 100}%`,
                         minHeight: "8px",
