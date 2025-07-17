@@ -30,16 +30,53 @@ export default async function Image() {
       >
         <div
           style={{
-            fontSize: 64,
-            fontWeight: 'bold',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             marginBottom: 30,
-            background: 'linear-gradient(45deg, #3b82f6, #8b5cf6)',
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            color: 'transparent',
           }}
         >
-          Scaletone
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              borderLeft: '8px solid #3b82f6',
+              paddingLeft: 24,
+              marginBottom: 12,
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 64,
+                  fontWeight: 'bold',
+                  background: 'linear-gradient(45deg, #3b82f6, #8b5cf6)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
+                }}
+              >
+                Scaletone
+              </span>
+              <div
+                style={{
+                  fontSize: 18,
+                  color: '#94a3b8',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: 4,
+                }}
+              >
+                <span>shadcn/radix colors</span>
+                <span>theme generator</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div
           style={{
