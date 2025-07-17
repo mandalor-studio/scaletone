@@ -18,13 +18,13 @@ export function BentoGrid() {
       <div className="hidden lg:block col-span-4">
         <PaymentForm />
       </div>
-      <div className="col-span-12 lg:col-span-8">
+      <div className="col-span-12 lg:col-span-8 order-3 lg:order-none">
         <MetricsDashboard />
       </div>
-      <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+      <div className="col-span-12 sm:col-span-6 lg:col-span-4 order-1 lg:order-none">
         <AnalyticsChart />
       </div>
-      <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+      <div className="col-span-12 sm:col-span-6 lg:col-span-4 order-2 lg:order-none">
         <NotificationsFeed />
       </div>
       <div className="hidden md:block col-span-12 lg:col-span-8">
