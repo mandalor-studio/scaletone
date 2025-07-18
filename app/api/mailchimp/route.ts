@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Name, email, and message are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
       console.error("Mailchimp configuration missing");
       return NextResponse.json(
         { error: "Server configuration error" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -59,11 +59,11 @@ export async function POST(request: Request) {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Basic ${Buffer.from(`anystring:${API_KEY}`).toString(
-            "base64"
+            "base64",
           )}`,
         },
         body: JSON.stringify(memberData),
-      }
+      },
     );
 
     if (!response.ok) {
@@ -77,14 +77,14 @@ export async function POST(request: Request) {
             message:
               "Thank you! Your message has been received. You're already subscribed to our updates.",
           },
-          { status: 200 }
+          { status: 200 },
         );
       }
 
       console.error("Mailchimp API error:", errorData);
       return NextResponse.json(
         { error: "Failed to subscribe. Please try again." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -94,13 +94,13 @@ export async function POST(request: Request) {
         message:
           "Thank you! Your message has been received and you've been subscribed to our updates.",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error processing request:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
