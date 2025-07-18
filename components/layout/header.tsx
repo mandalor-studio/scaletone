@@ -1,10 +1,17 @@
+"use client";
+
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ModeToggle } from "../ui/mode-toggle";
 import { Logo } from "../scaletone-logo";
+import { CopyThemeButton } from "@/app/generator/_panel/copy-theme-button";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+  const isGeneratorPage = pathname === "/generator";
+
   return (
     <header className="sticky top-0 z-10 bg-background/60 backdrop-blur-sm border-b-4 border-background">
       <div className="container mx-auto px-4 py-4 max-w-6xl w-full">
@@ -25,18 +32,27 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <Button
-              variant="default"
-              asChild
-              size="sm"
-              className="text-xs md:text-sm"
-            >
-              <Link href="/generator">
-                <span className="hidden sm:inline">Try it out</span>
-                <span className="sm:hidden">Try</span>
-                <ArrowRightIcon className="h-3 w-3 md:h-4 md:w-4" />
-              </Link>
-            </Button>
+            {isGeneratorPage ? (
+              <CopyThemeButton
+                variant="default"
+                size="sm"
+                className="text-xs md:text-sm gap-1 md:gap-2"
+                showText
+              />
+            ) : (
+              <Button
+                variant="default"
+                asChild
+                size="sm"
+                className="text-xs md:text-sm"
+              >
+                <Link href="/generator">
+                  <span className="hidden sm:inline">Try it out</span>
+                  <span className="sm:hidden">Try</span>
+                  <ArrowRightIcon className="h-3 w-3 md:h-4 md:w-4" />
+                </Link>
+              </Button>
+            )}
             <ModeToggle />
           </div>
         </div>

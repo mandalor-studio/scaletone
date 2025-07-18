@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "color palette generator",
   ],
   openGraph: {
-    title: "Scaletone - Professional Theme Generator for shadcn/ui & Radix UI",
+    title: "Scaletone - Consistent Theme Generator for shadcn/ui & Radix UI",
     description:
       "Create beautiful, accessible themes for shadcn/ui and Radix UI components in minutes. Generate consistent design systems with Radix Colors.",
     url: "https://scaletone.mandalor.studio",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
       <HeroSection />
       <ToolsSection />
       <ShowcaseSection />

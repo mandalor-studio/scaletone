@@ -51,9 +51,10 @@ export function ToolsSection() {
     <Section className="py-12 gap-8 md:py-30 md:gap-16 relative">
       <div className="absolute w-[33%] h-[50%] -z-10 top-5 md:top-10 left-1/2 -translate-x-1/2 rounded-full blur-3xl bg-primary/10" />
       <div className="flex flex-col items-center text-center justify-center w-full">
-        <SectionTitle>Crafted for modern web</SectionTitle>
+        <SectionTitle>Built for modern frontend</SectionTitle>
         <SectionDescription>
-          Built following radix colors principles for shadcn and tailwind.
+          Powered by Radix Colors and Tailwind CSS — perfectly aligned with
+          shadcn/ui.
         </SectionDescription>
       </div>
       <div className="flex gap-6 max-w-6xl mx-auto w-full justify-around flex-wrap">
@@ -80,7 +81,7 @@ const ToolItem = ({ tool }: { tool: Tool }) => {
               tool.logo as React.ReactElement<SVGProps<SVGSVGElement>>,
               {
                 className: "w-full h-full",
-              }
+              },
             )}
           </div>
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-2 bg-foreground/50 rounded-full blur-md group-hover:opacity-100 opacity-0 transition-opacity duration-300 -z-10" />

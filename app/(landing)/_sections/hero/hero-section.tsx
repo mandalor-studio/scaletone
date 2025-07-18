@@ -21,11 +21,12 @@ export function HeroSection() {
             <span className="text-primary"> shadcn/ui</span>
           </SectionTitle>
           <SectionDescription isHero className="max-w-xl">
-            Generate accessible and consistent themes using{" "}
+            Smart, accessible theming with the best of{" "}
             <span className="font-semibold text-foreground">Radix Colors</span>{" "}
-            for <span className="font-semibold text-foreground">shadcn/ui</span>{" "}
-            components.
-            <br />
+            and{" "}
+            <span className="font-semibold text-foreground">
+              shadcn/ui
+            </span>{" "}
           </SectionDescription>
         </div>
         <Image

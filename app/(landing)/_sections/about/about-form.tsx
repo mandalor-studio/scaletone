@@ -3,7 +3,6 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -31,17 +30,15 @@ const formSchema = z.object({
   email: z.email({ message: "Please enter a valid email" }),
   message: z
     .string()
-    .min(20, { message: "Message must be at least 20 characters" })
-    .max(1000, {
-      message: "Message must be less than 1000 characters",
-    }),
+    .max(255, {
+      message: "Message must be less than 255 characters",
+    })
+    .optional(),
 });
 
 type FormSchema = z.infer<typeof formSchema>;
 
 export function AboutForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,8 +49,6 @@ export function AboutForm() {
   });
 
   const onSubmit = async (data: FormSchema) => {
-    setIsSubmitting(true);
-    
     try {
       const response = await fetch("/api/mailchimp", {
         method: "POST",
@@ -66,7 +61,9 @@ export function AboutForm() {
       const result = await response.json();
 
       if (response.ok) {
-        toast.success(result.message || "Thank you! Your message has been received.");
+        toast.success(
+          result.message || "Thank you! Your message has been received.",
+        );
         form.reset();
       } else {
         toast.error(result.error || "Something went wrong. Please try again.");
@@ -75,7 +72,6 @@ export function AboutForm() {
       console.error("Error submitting form:", error);
       toast.error("Network error. Please check your connection and try again.");
     } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -131,6 +127,9 @@ export function AboutForm() {
                       className="min-h-[200px] max-h-[200px] resize-none"
                     />
                   </FormControl>
+                  <div className="text-xs text-muted-foreground text-right">
+                    {field.value?.length || 0}/255 characters
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
@@ -138,9 +137,17 @@ export function AboutForm() {
           </Form>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
-          <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Submitting..." : "Submit"}
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full"
+            disabled={form.formState.isSubmitting}
+          >
+            {form.formState.isSubmitting ? "Submitting..." : "Submit"}
           </Button>
+          <p className="text-xs text-muted-foreground text-center">
+            By submitting this form, you agree to receive updates from us.
+          </p>
           <p className="text-xs text-muted-foreground text-center">
             Curious about who we are?{" "}
             <Link
