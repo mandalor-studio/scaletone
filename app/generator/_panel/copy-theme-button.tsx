@@ -10,12 +10,14 @@ interface CopyThemeButtonProps {
   variant?: "ghost" | "outline" | "default";
   size?: "sm" | "icon" | "default";
   className?: string;
+  showText?: boolean;
 }
 
 export function CopyThemeButton({
   variant = "ghost",
   size = "icon",
   className,
+  showText = false,
 }: CopyThemeButtonProps) {
   const [copied, setCopied] = useState(false);
   const { config, generatedCSS } = useRadixTheme();
@@ -61,6 +63,11 @@ export function CopyThemeButton({
       className={`transition-all duration-200 ${className}`}
     >
       {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+      {showText && (
+        <span className="ml-1 hidden sm:inline">
+          {copied ? "Copied!" : "Copy theme"}
+        </span>
+      )}
     </Button>
   );
 }
