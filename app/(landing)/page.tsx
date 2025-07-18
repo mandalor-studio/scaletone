@@ -6,7 +6,7 @@ import { AboutSection } from "./_sections/about/about-section";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Scaletone - Professional Theme Generator for shadcn/ui & Radix UI",
+  title: "Scaletone - Consistent Theme Generator for shadcn/ui & Radix UI",
   description:
     "Create beautiful, accessible themes for shadcn/ui and Radix UI components in minutes. Generate consistent design systems with Radix Colors. Perfect for developers and designers.",
   keywords: [

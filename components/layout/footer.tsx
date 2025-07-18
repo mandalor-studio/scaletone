@@ -51,7 +51,7 @@ export default function Footer() {
               className="flex items-center gap-3 group"
             >
               <Avatar className="h-8 w-8">
-                <AvatarImage src="/eva&gio.png" />
+                <AvatarImage src="/eva&gio.png" alt="Eva & Jo avatar" />
                 <AvatarFallback>EJ</AvatarFallback>
               </Avatar>
               <div className="flex flex-col max-w-[200px]">
