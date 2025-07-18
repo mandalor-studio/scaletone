@@ -47,6 +47,7 @@ export default function Footer() {
             <h3 className="font-semibold">Made by</h3>
             <Link
               href="https://evaandjo.com"
+              target="_blank"
               className="flex items-center gap-3 group"
             >
               <Avatar className="h-8 w-8">
@@ -94,25 +95,29 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <Link
-                href="https://github.com"
+                href="https://github.com/mandalor-studio"
+                target="_blank"
                 className="text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 GitHub
               </Link>
               <Link
-                href="https://twitter.com"
+                href="https://x.com/evaandjo"
+                target="_blank"
                 className="text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 X
               </Link>
               <Link
-                href="https://instagram.com"
+                href="https://www.instagram.com/evaandjo_?igsh=bGMwZnNpcGt5YW0z"
+                target="_blank"
                 className="text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 Instagram
               </Link>
               <Link
-                href="https://tiktok.com"
+                href="https://www.tiktok.com/@eva_and_jo?_t=ZN-8xirVxbEYNy&_r=1"
+                target="_blank"
                 className="text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 TikTok
