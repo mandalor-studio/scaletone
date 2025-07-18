@@ -59,29 +59,25 @@ export default function Footer() {
                   Eva & Jo
                 </span>
                 <span className="text-xs text-muted-foreground text-balance">
-                  We build custom mini-apps to help creative pros scale their
-                  freedom.
+                  We build small, smart tools to support your freedom.
                 </span>
               </div>
             </Link>
             <div className="flex flex-wrap gap-2">
               <Badge variant="secondary" className="text-xs">
-                React
+                Web & mobile development
+              </Badge>{" "}
+              <Badge variant="secondary" className="text-xs">
+                AI{" "}
               </Badge>
               <Badge variant="secondary" className="text-xs">
-                Next.js
+                UX/UI design
               </Badge>
               <Badge variant="secondary" className="text-xs">
-                TypeScript
+                Digital Branding
               </Badge>
               <Badge variant="secondary" className="text-xs">
-                Tailwind
-              </Badge>
-              <Badge variant="secondary" className="text-xs">
-                shadcn/ui
-              </Badge>
-              <Badge variant="secondary" className="text-xs">
-                Radix UI
+                Launch & Growth Strategy
               </Badge>
             </div>
           </div>
